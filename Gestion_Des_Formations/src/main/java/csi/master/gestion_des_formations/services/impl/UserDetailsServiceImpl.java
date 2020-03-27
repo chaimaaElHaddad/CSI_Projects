@@ -1,4 +1,4 @@
-package csi.master.gestion_des_formations.services;
+package csi.master.gestion_des_formations.services.impl;
 
 import java.util.HashSet;
 import java.util.Set;

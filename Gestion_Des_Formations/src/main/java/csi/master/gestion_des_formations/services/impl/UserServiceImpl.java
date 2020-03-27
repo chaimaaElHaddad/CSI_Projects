@@ -1,4 +1,4 @@
-package csi.master.gestion_des_formations.services;
+package csi.master.gestion_des_formations.services.impl;
 
 import java.util.HashSet;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import csi.master.gestion_des_formations.entities.User;
 import csi.master.gestion_des_formations.repositories.IRoleRepository;
 import csi.master.gestion_des_formations.repositories.IUserRepository;
+import csi.master.gestion_des_formations.services.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

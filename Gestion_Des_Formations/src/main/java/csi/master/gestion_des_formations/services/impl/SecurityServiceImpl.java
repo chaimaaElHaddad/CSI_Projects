@@ -1,9 +1,11 @@
-package csi.master.gestion_des_formations.services;
+package csi.master.gestion_des_formations.services.impl;
 
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import csi.master.gestion_des_formations.services.SecurityService;
 
 @Service
 public class SecurityServiceImpl implements SecurityService{
