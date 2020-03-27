@@ -11,4 +11,6 @@ public interface IFormationRepository extends JpaRepository<Formation, Long> {
 
 	public List<Formation> getByDate(Date date);
 
+	public Formation findByFormateurId(long id);
+
 }

@@ -1,6 +1,6 @@
 package csi.master.gestion_des_formations.services;
 
-public interface SecurityService {
+public interface SecurityServiceI {
 	
     String findLoggedInUsername();
 

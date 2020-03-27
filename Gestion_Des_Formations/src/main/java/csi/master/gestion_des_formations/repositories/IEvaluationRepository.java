@@ -6,4 +6,6 @@ import csi.master.gestion_des_formations.entities.Evaluation;
 
 public interface IEvaluationRepository extends JpaRepository<Evaluation, Long> {
 
+	Evaluation findByElementId(long id);
+
 }

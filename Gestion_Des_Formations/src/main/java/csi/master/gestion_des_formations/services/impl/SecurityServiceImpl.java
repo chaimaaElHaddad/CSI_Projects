@@ -5,10 +5,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import csi.master.gestion_des_formations.services.SecurityService;
+import csi.master.gestion_des_formations.services.SecurityServiceI;
 
 @Service
-public class SecurityServiceImpl implements SecurityService{
+public class SecurityServiceImpl implements SecurityServiceI{
 
 
     @Override
