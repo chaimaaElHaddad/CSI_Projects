@@ -19,9 +19,7 @@ public class CurriculumVitae {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_CV;
-
-//	@OneToOne
-//	@MapsId
-//	private User formateur;
+	
+	private long formateurId;
 
 }
