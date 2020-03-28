@@ -6,7 +6,7 @@ import csi.master.gestion_des_formations.entities.User;
 
 public interface UserServiceI {
 
-	void save(User userO);
+	User save(User userO);
 
 	User findByUsername(String username);
 
