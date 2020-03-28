@@ -10,10 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import csi.master.gestion_des_formations.entities.Role;
 import csi.master.gestion_des_formations.entities.User;
 import csi.master.gestion_des_formations.repositories.IUserRepository;
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -31,12 +29,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		for (Role role : user.getRoles()) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole()));
-		}
+		grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getRole()));
 		System.out.println("user name: " + username);
 		System.out.println("user found :" + user);
-		
+
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				grantedAuthorities);
 	}

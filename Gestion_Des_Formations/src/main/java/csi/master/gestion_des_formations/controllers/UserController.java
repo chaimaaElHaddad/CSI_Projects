@@ -38,7 +38,7 @@ public class UserController {
 		List<User> formateurs = new ArrayList<User>();
 
 		for (User user : users) {
-			if (user.getRoles().contains(roleRepository.getOne("FORMATEUR"))) {
+			if (user.getRole().equals(roleRepository.getOne("FORMATEUR"))) {
 				formateurs.add(user);
 			}
 
@@ -54,7 +54,7 @@ public class UserController {
 		List<User> beneficiaires = new ArrayList<User>();
 
 		for (User user : users) {
-			if (user.getRoles().contains(roleRepository.getOne("BENEFICIAIRE"))) {
+			if (user.getRole().equals(roleRepository.getOne("BENEFICIAIRE"))) {
 				beneficiaires.add(user);
 			}
 
@@ -67,7 +67,7 @@ public class UserController {
 	public User getFormateurById(@PathVariable Long id) {
 		User user = userService.getById(id);
 		if (user != null) {
-			if (user.getRoles().contains(roleRepository.getOne("FORMATEUR"))) {
+			if (user.getRole().equals(roleRepository.getOne("FORMATEUR"))) {
 				return user;
 			}
 		}
@@ -78,7 +78,7 @@ public class UserController {
 	public User getBeneficiaireById(@PathVariable Long id) {
 		User user = userService.getById(id);
 		if (user != null) {
-			if (user.getRoles().contains(roleRepository.getOne("BENEFICIAIRE"))) {
+			if (user.getRole().equals(roleRepository.getOne("BENEFICIAIRE"))) {
 				return user;
 			}
 		}

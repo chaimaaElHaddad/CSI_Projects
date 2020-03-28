@@ -1,6 +1,5 @@
 package csi.master.gestion_des_formations.services.impl;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import csi.master.gestion_des_formations.entities.User;
-import csi.master.gestion_des_formations.repositories.IRoleRepository;
 import csi.master.gestion_des_formations.repositories.IUserRepository;
 import csi.master.gestion_des_formations.services.UserServiceI;
 
@@ -16,15 +14,14 @@ import csi.master.gestion_des_formations.services.UserServiceI;
 public class UserServiceImpl implements UserServiceI {
 	@Autowired
 	private IUserRepository userRepository;
-	@Autowired
-	private IRoleRepository roleRepository;
+//	@Autowired
+//	private IRoleRepository roleRepository;
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public User save(User user) {
 		// user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setRoles(new HashSet<>(roleRepository.findAll()));
 		return userRepository.save(user);
 	}
 

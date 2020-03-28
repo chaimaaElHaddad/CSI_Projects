@@ -1,15 +1,17 @@
 package csi.master.gestion_des_formations.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -32,18 +34,24 @@ public class User implements Serializable {
 
 	private String username;
 	private String password;
-	private boolean avtived;
+	private int avtived;
 
 	@Email
 	private String email;
-	private int phone;
+	private String phone;
 	private String adress;
 
 	@Transient
 	private String passwordConfirm;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "USERS_ROLES")
-	private Collection<Role> roles;
+	@ManyToMany
+	@JoinTable(name = "element_inscription", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "element_de_formation_id"))
+	Set<ElementDeFormation> elementInscription;
+
+//	@OneToMany(mappedBy = "user")
+//	List<ElementInscription> inscriptions = new ArrayList<ElementInscription>();
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Role role;
 
 }

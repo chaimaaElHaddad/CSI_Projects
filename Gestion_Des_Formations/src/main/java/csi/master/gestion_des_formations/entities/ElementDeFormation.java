@@ -1,14 +1,12 @@
 package csi.master.gestion_des_formations.entities;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import lombok.Data;
@@ -26,11 +24,17 @@ public class ElementDeFormation {
 	private String objectif;
 	private String prerequis;
 	private String description;
-	
+
 	private Long formationId;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "beneficiaire_element")
-	private List<User> beneficiaires;
+	@ManyToMany(mappedBy = "elementInscription")
+	Set<User> beneficiaires;
+
+//	@OneToMany(mappedBy = "elementDeFormation")
+//    List<ElementInscription> inscriptions = new ArrayList<ElementInscription>();
+
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "beneficiaire_element")
+//	private List<User> beneficiaires = new ArrayList<User>();
 
 }
