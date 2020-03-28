@@ -1,7 +1,6 @@
 package csi.master.gestion_des_formations.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,51 +13,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import csi.master.gestion_des_formations.entities.CurriculumVitae;
-import csi.master.gestion_des_formations.repositories.ICurriculumVitaeRepository;
+import csi.master.gestion_des_formations.services.CurriculumVitaeServiceI;
 
 @RestController
 @RequestMapping(value = "/cv")
 public class CurriculumVitaeController {
 
 	@Autowired
-	private ICurriculumVitaeRepository cvRepo;
+	private CurriculumVitaeServiceI curriculumVitaeService;
 
 	@PostMapping(value = "/create")
-	public CurriculumVitae createFormateur(@RequestBody CurriculumVitae cvitae) {
+	public CurriculumVitae createCurriculumVitae(@RequestBody CurriculumVitae cvitae) {
 
-		return cvRepo.save(cvitae);
+		return curriculumVitaeService.create(cvitae);
 	}
 
 	@PutMapping(value = "/update/{id}")
 	public CurriculumVitae updateCV(@PathVariable Long id, @RequestBody CurriculumVitae cvitae) {
-		if (id != null) {
-			Optional<CurriculumVitae> cv = cvRepo.findById(id);
-			if (cv != null) {
-				cvitae.setId_CV(id);
-				return cvRepo.save(cvitae);
-			}
-
-		}
-		return null;
+		return curriculumVitaeService.update(id, cvitae);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
 	public void deleteCV(@PathVariable Long id) {
-		if (id != null) {
-			Optional<CurriculumVitae> cvitae = cvRepo.findById(id);
-			if (cvitae != null) {
-				cvRepo.deleteById(id);
-			}
-		}
+		curriculumVitaeService.delete(id);
 
 	}
 
 	@GetMapping(value = "/all")
 	public List<CurriculumVitae> getAll() {
-		return cvRepo.findAll();
+		return curriculumVitaeService.getAll();
 
 	}
 
-	
+	@GetMapping(value = "/formateur/{id}")
+	public CurriculumVitae getByFormateur(@PathVariable Long id) {
+
+		return curriculumVitaeService.getByFormateurId(id);
+
+	}
 
 }

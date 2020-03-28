@@ -1,7 +1,6 @@
 package csi.master.gestion_des_formations.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,48 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import csi.master.gestion_des_formations.entities.ElementDeFormation;
-import csi.master.gestion_des_formations.repositories.IElementRepository;
+import csi.master.gestion_des_formations.services.ElementDeFormationServiceI;
 
 @RestController
-@RequestMapping(value = "/element")
-public class ElementController {
+@RequestMapping(value = "/elementDeFormation")
+public class ElementDeFormationContoller {
 
 	@Autowired
-	private IElementRepository elementRepo;
+	private ElementDeFormationServiceI elementDeFormationService;
 
 	@PostMapping(value = "/create")
-	public ElementDeFormation createElement(@RequestBody ElementDeFormation element) {
+	public ElementDeFormation createElementDeFormation(@RequestBody ElementDeFormation element) {
 
-		return elementRepo.save(element);
+		return elementDeFormationService.create(element);
 	}
 
 	@PutMapping(value = "/update/{id}")
-	public ElementDeFormation updateElement(@PathVariable Long id, @RequestBody ElementDeFormation element) {
-		if (id != null) {
-			Optional<ElementDeFormation> e = elementRepo.findById(id);
-			if (e != null) {
-				element.setId(id);
-				return elementRepo.save(element);
-			}
-
-		}
-		return null;
+	public ElementDeFormation updateElementDeFormation(@PathVariable Long id, @RequestBody ElementDeFormation element) {
+		return elementDeFormationService.update(id, element);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public void deleteElement(@PathVariable Long id) {
-		if (id != null) {
-			Optional<ElementDeFormation> element = elementRepo.findById(id);
-			if (element != null) {
-				elementRepo.deleteById(id);
-			}
-		}
+	public void deleteElementDeFormation(@PathVariable Long id) {
+		elementDeFormationService.delete(id);
 
 	}
 
 	@GetMapping(value = "/all")
 	public List<ElementDeFormation> getAll() {
-		return elementRepo.findAll();
+		return elementDeFormationService.getAll();
+
+	}
+
+	@GetMapping(value = "/formateur/{id}")
+	public List<ElementDeFormation> getByFormation(@PathVariable Long id) {
+
+		return elementDeFormationService.getByFormationId(id);
 
 	}
 

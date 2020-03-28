@@ -49,7 +49,7 @@ public class UserRestController {
 	
 	@RequestMapping(value="/addRoleToUser")
 	public User addRoleToUser(String username, String role) {
-		User u = userRepository.getOne(username);
+		User u = userRepository.findByUsername(username);
 		Role r = roleRepository.getOne(role); 
 		u.getRoles().add(r);
 		userRepository.save(u);

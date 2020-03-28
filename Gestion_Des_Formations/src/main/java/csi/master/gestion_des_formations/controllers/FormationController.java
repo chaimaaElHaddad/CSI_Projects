@@ -1,8 +1,6 @@
 package csi.master.gestion_des_formations.controllers;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,55 +13,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import csi.master.gestion_des_formations.entities.Formation;
-import csi.master.gestion_des_formations.repositories.IFormationRepository;
+import csi.master.gestion_des_formations.services.FormationServiceI;
 
 @RestController
 @RequestMapping(value = "/formation")
 public class FormationController {
 
 	@Autowired
-	private IFormationRepository formationRepo;
+	private FormationServiceI formationService;
 
 	@PostMapping(value = "/create")
-	public Formation createPerson(@RequestBody Formation person) {
+	public Formation createFormation(@RequestBody Formation formation) {
 
-		return formationRepo.save(person);
+		return formationService.create(formation);
 	}
 
 	@PutMapping(value = "/update/{id}")
-	public Formation updatePerson(@PathVariable Long id, @RequestBody Formation formation) {
-		if (id != null) {
-			Optional<Formation> f = formationRepo.findById(id);
-			if (f != null) {
-				formation.setId(id);
-				return formationRepo.save(formation);
-			}
-
-		}
-		return null;
+	public Formation updateFormation(@PathVariable Long id, @RequestBody Formation formation) {
+		return formationService.update(id, formation);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
 	public void deleteFormation(@PathVariable Long id) {
-		if (id != null) {
-			Optional<Formation> person = formationRepo.findById(id);
-			if (person != null) {
-				formationRepo.deleteById(id);
-			}
-		}
+		formationService.delete(id);
 
 	}
 
 	@GetMapping(value = "/all")
 	public List<Formation> getAll() {
-		return formationRepo.findAll();
+		return formationService.getAll();
 
 	}
 
-	@GetMapping(value = "/all/by/{date}")
-	public List<Formation> getByDate(@PathVariable Date date) {
+	@GetMapping(value = "/duringNext30Days")
+	public List<Formation> getFormationDuringTheNext30Days() {
 
-		return formationRepo.getByDate(date);
+		return formationService.getFormationsOfferedDuringTheNext30Days();
+
+	}
+
+	@GetMapping(value = "/formateur/{id}")
+	public List<Formation> getByFormateur(@PathVariable Long id) {
+
+		return formationService.getByFormateurId(id);
+
 	}
 
 }
