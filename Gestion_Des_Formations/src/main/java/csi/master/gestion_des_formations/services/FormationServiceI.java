@@ -8,13 +8,15 @@ public interface FormationServiceI {
 
 	Formation create(Formation formationToCreate);
 
-	Formation update(Formation formationToUpdate);
+	Formation update(Long id, Formation formationToUpdate);
 
-	void delete(long id);
+	void delete(Long id);
 
-	Formation getById(long id);
+	Formation getById(Long id);
 
-	Formation getByFormateurId(long id);
+	List<Formation> getByFormateurId(Long id);
+	
+	List<Formation> getFormationsOfferedDuringTheNext30Days();
 
 	List<Formation> getAll();
 

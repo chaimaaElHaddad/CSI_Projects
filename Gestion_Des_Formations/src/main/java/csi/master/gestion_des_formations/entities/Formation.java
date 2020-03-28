@@ -1,6 +1,6 @@
 package csi.master.gestion_des_formations.entities;
 
-import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +18,8 @@ public class Formation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private Date date;
-	private Date duree;
+	private Calendar date;
+	// private Date duree;
 	private String accueil; // accueil=nom,adress
 	private int nembres_places;
 	private float prix;

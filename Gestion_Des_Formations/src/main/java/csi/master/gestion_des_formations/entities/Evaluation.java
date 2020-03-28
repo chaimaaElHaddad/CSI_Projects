@@ -30,12 +30,26 @@ public class Evaluation {
 	@ElementCollection(fetch = FetchType.LAZY)
 	private Map<String, Integer> contenuCriteres = new HashMap<String, Integer>(); //<critère,note>
 	
+	private int score;
 	
-	
-//	  @CollectionTable(name = "raw_events_custom", joinColumns = @JoinColumn(name =     "raw_event_id"))
-//	  @MapKeyColumn(name = "field_key", length = 50)
-//	  @Column(name = "field_val", length = 100)
-//	  @BatchSize(size = 20)
-//	  private Map<String, String> customValues = new HashMap<String, String>();
-//	
+	public int getScore() {
+		int accueilScore = 0;
+		for (int note : this.getAccueilCriteres().values()) {
+			accueilScore += note;
+		}
+		
+		int formateurScore = 0;
+		for (int note : this.getFormateurCriteres().values()) {
+			formateurScore += note;
+		}
+		
+		int contenuScore = 0;
+		for (int note : this.getContenuCriteres().values()) {
+			contenuScore += note;
+		}
+		this.score =  accueilScore + formateurScore + contenuScore;
+		
+		return score;
+	}
+		
 }

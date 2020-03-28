@@ -26,7 +26,8 @@ public class ElementDeFormation {
 	private String objectif;
 	private String prerequis;
 	private String description;
-	private int score;
+	
+	private Long formationId;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "beneficiaire_element")

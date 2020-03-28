@@ -23,18 +23,26 @@ public class CurriculumVitaeServiceImpl implements CurriculumVitaeServiceI {
 	}
 
 	@Override
-	public CurriculumVitae update(CurriculumVitae curriculumVitaeToUpdate) {
+	public CurriculumVitae update(Long id, CurriculumVitae curriculumVitaeToUpdate) {
+		
+		if (id != null) {
+			Optional<CurriculumVitae> cv = curriculumVitaeRepository.findById(id);
+			if (cv.isPresent()) {
+				curriculumVitaeToUpdate.setId_CV(id);
+				return curriculumVitaeRepository.save(curriculumVitaeToUpdate);
+			}
 
-		return curriculumVitaeRepository.save(curriculumVitaeToUpdate);
+		}
+		return null;
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		curriculumVitaeRepository.deleteById(id);
 	}
 
 	@Override
-	public CurriculumVitae getById(long id) {
+	public CurriculumVitae getById(Long id) {
 		Optional<CurriculumVitae> cvOptional = curriculumVitaeRepository.findById(id);
 		if (cvOptional.isPresent())
 			return cvOptional.get();
@@ -43,7 +51,7 @@ public class CurriculumVitaeServiceImpl implements CurriculumVitaeServiceI {
 	}
 
 	@Override
-	public CurriculumVitae getByFormateurId(long id) {
+	public CurriculumVitae getByFormateurId(Long id) {
 
 		return curriculumVitaeRepository.findByFormateurId(id);
 	}

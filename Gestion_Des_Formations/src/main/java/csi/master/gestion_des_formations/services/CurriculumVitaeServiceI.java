@@ -8,13 +8,13 @@ public interface CurriculumVitaeServiceI {
 	
 	CurriculumVitae create(CurriculumVitae curriculumVitaeToCreate);
 
-	CurriculumVitae update(CurriculumVitae curriculumVitaeToUpdate);
+	CurriculumVitae update(Long id, CurriculumVitae curriculumVitaeToUpdate);
 
-	void delete(long id);
+	void delete(Long id);
 
-	CurriculumVitae getById(long id);
+	CurriculumVitae getById(Long id);
 	
-	CurriculumVitae getByFormateurId(long id);
+	CurriculumVitae getByFormateurId(Long id);
 
 	List<CurriculumVitae> getAll();
 

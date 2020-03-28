@@ -34,17 +34,25 @@ public class UserServiceImpl implements UserServiceI {
 	}
 
 	@Override
-	public User update(User userToUpdate) {
-		return userRepository.save(userToUpdate);
+	public User update(Long id, User userToUpdate) {
+		if (id != null) {
+			Optional<User> user = userRepository.findById(id);
+			if (user.isPresent()) {
+				userToUpdate.setId(id);
+				return userRepository.save(userToUpdate);
+			}
+
+		}
+		return null;
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
 
 	@Override
-	public User getById(long id) {
+	public User getById(Long id) {
 		Optional<User> userOptional = userRepository.findById(id);
 
 		if (userOptional.isPresent()) {

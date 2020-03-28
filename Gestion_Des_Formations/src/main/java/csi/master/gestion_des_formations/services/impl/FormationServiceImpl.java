@@ -1,5 +1,6 @@
 package csi.master.gestion_des_formations.services.impl;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,17 +23,26 @@ public class FormationServiceImpl implements FormationServiceI {
 	}
 
 	@Override
-	public Formation update(Formation formationToUpdate) {
-		return formationRepository.save(formationToUpdate);
+	public Formation update(Long id, Formation formationToUpdate) {
+		if (id != null) {
+			Optional<Formation> formation = formationRepository.findById(id);
+			if (formation.isPresent()) {
+				formationToUpdate.setId(id);
+				;
+				return formationRepository.save(formationToUpdate);
+			}
+
+		}
+		return null;
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		formationRepository.deleteById(id);
 	}
 
 	@Override
-	public Formation getById(long id) {
+	public Formation getById(Long id) {
 		Optional<Formation> formationOptional = formationRepository.findById(id);
 
 		if (formationOptional.isPresent()) {
@@ -43,13 +53,22 @@ public class FormationServiceImpl implements FormationServiceI {
 	}
 
 	@Override
-	public Formation getByFormateurId(long id) {
+	public List<Formation> getByFormateurId(Long id) {
 		return formationRepository.findByFormateurId(id);
 	}
 
 	@Override
 	public List<Formation> getAll() {
 		return formationRepository.findAll();
+	}
+
+	@Override
+	public List<Formation> getFormationsOfferedDuringTheNext30Days() {
+		Calendar todayDate = Calendar.getInstance();
+		Calendar after30Days = Calendar.getInstance();
+		after30Days.add(Calendar.DATE, 30);
+		return formationRepository.findByDateBetween(todayDate, after30Days);
+		
 	}
 
 }

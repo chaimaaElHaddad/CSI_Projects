@@ -8,7 +8,7 @@ public interface RoleServiceI {
 
 	Role create(Role formationToCreate);
 
-	Role update(Role formationToUpdate);
+	Role update(String id, Role formationToUpdate);
 
 	void delete(String id);
 

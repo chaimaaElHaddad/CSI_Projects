@@ -8,13 +8,13 @@ public interface EvaluationServiceI {
 
 	Evaluation create(Evaluation evaluationToCreate);
 
-	Evaluation update(Evaluation evaluationToUpdate);
+	Evaluation update(Long id, Evaluation evaluationToUpdate);
 
-	void delete(long id);
+	void delete(Long id);
 
-	Evaluation getById(long id);
+	Evaluation getById(Long id);
 
-	Evaluation getByElementId(long id);
+	Evaluation getByElementId(Long id);
 
 	List<Evaluation> getAll();
 

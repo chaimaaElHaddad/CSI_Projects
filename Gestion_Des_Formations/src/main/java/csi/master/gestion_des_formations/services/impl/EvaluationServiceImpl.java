@@ -22,17 +22,26 @@ public class EvaluationServiceImpl implements EvaluationServiceI {
 	}
 
 	@Override
-	public Evaluation update(Evaluation evaluationToUpdate) {
-		return evaluationRepository.save(evaluationToUpdate);
+	public Evaluation update(Long id, Evaluation evaluationToUpdate) {
+		if (id != null) {
+			Optional<Evaluation> evaluation = evaluationRepository.findById(id);
+			if (evaluation.isPresent()) {
+				evaluationToUpdate.setId(id);
+				;
+				return evaluationRepository.save(evaluationToUpdate);
+			}
+
+		}
+		return null;
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		evaluationRepository.deleteById(id);
 	}
 
 	@Override
-	public Evaluation getById(long id) {
+	public Evaluation getById(Long id) {
 		Optional<Evaluation> evaluationOptional = evaluationRepository.findById(id);
 
 		if (evaluationOptional.isPresent()) {
@@ -43,7 +52,7 @@ public class EvaluationServiceImpl implements EvaluationServiceI {
 	}
 
 	@Override
-	public Evaluation getByElementId(long id) {
+	public Evaluation getByElementId(Long id) {
 		return evaluationRepository.findByElementId(id);
 	}
 

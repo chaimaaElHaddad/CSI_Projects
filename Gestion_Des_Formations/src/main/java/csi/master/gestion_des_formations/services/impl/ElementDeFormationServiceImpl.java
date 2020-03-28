@@ -12,7 +12,7 @@ import csi.master.gestion_des_formations.services.ElementDeFormationServiceI;
 
 @Service
 public class ElementDeFormationServiceImpl implements ElementDeFormationServiceI {
-	
+
 	@Autowired
 	private IElementRepository elementRepository;
 
@@ -22,29 +22,43 @@ public class ElementDeFormationServiceImpl implements ElementDeFormationServiceI
 	}
 
 	@Override
-	public ElementDeFormation update(ElementDeFormation elementDeFormationToUpdate) {
-		return elementRepository.save(elementDeFormationToUpdate);
+	public ElementDeFormation update(Long id, ElementDeFormation elementDeFormationToUpdate) {
+		if (id != null) {
+			Optional<ElementDeFormation> element = elementRepository.findById(id);
+			if (element.isPresent()) {
+				elementDeFormationToUpdate.setId(id);
+				;
+				return elementRepository.save(elementDeFormationToUpdate);
+			}
+
+		}
+		return null;
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		elementRepository.deleteById(id);
 	}
 
 	@Override
-	public ElementDeFormation getById(long id) {
+	public ElementDeFormation getById(Long id) {
 		Optional<ElementDeFormation> elementOptional = elementRepository.findById(id);
-		
-		if(elementOptional.isPresent()) {
+
+		if (elementOptional.isPresent()) {
 			return elementOptional.get();
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public List<ElementDeFormation> getAll() {
 		return elementRepository.findAll();
+	}
+
+	@Override
+	public List<ElementDeFormation> getByFormationId(Long formationId) {
+		return elementRepository.findByFormationId(formationId);
 	}
 
 }
