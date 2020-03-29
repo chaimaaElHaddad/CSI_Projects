@@ -1,4 +1,4 @@
-package csi.master.gestion_des_formations;
+package csi.master.gestion_des_formations.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -20,6 +20,6 @@ public class CurriculumVitae {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_CV;
 	
-	private long formateurId;
+	private Long formateurId;
 
 }
