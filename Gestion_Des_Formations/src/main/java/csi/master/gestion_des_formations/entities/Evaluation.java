@@ -18,11 +18,11 @@ public class Evaluation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private long elementId;
+	private Long id;
+	private Long elementId;
 	
 	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> accueilCriteres = new HashMap<String, Integer>(); //<critère,note>
+	private Map<String, Integer> accueilCriteres = new HashMap<String, Integer>(); //<critère,note>  note/10
 	
 	@ElementCollection(fetch = FetchType.LAZY)
 	private Map<String, Integer> formateurCriteres = new HashMap<String, Integer>(); //<critère,note>
@@ -30,7 +30,7 @@ public class Evaluation {
 	@ElementCollection(fetch = FetchType.LAZY)
 	private Map<String, Integer> contenuCriteres = new HashMap<String, Integer>(); //<critère,note>
 	
-	private int score;
+	private int score; //somme des notes / 10*nbInscription == note global n'est pas score
 	
 	public int getScore() {
 		int accueilScore = 0;
