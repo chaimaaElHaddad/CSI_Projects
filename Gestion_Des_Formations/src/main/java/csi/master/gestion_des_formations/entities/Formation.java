@@ -18,6 +18,7 @@ public class Formation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String name;
 	private Calendar date;
 	// private Date duree;
 	private String accueil; // accueil=nom,adress

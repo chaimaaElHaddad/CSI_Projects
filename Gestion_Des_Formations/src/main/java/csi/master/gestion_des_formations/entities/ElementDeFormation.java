@@ -18,6 +18,7 @@ public class ElementDeFormation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private String name;
 	private Calendar date;
 	private int temps; // temps en minutes
 	private Long prix; // en MAD
