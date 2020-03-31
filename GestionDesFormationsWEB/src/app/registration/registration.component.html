@@ -1,8 +1,8 @@
 <div class="registration" >
     <div class="signup-form"> 
         <header>
-            <h2>Sign Up</h2>
-            <p>Please fill in this form to create an account!</p>
+            <h2>S'inscrire</h2>
+            <p>Veuillez remplir ce formulaire pour créer un compte!</p>
         </header>
              
         <form class="registration-form">
@@ -10,12 +10,12 @@
                 <div class="row" id="form-group">
                     <div class="col-xs-7" >
                         <mat-form-field appearance="fill">
-                            <mat-label>First Name</mat-label>
+                            <mat-label>Prénom</mat-label>
                             <input matInput>
                         </mat-form-field>
                     </div>
                     <div class="col-xs-7" style="padding-left:25px;"><mat-form-field appearance="fill">
-                        <mat-label>Last Name</mat-label>
+                        <mat-label>Nom</mat-label>
                             <input matInput>
                         </mat-form-field> 
                     </div>
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <mat-form-field appearance="fill" class="fill-full-width">
-                    <mat-label>Password</mat-label>
+                    <mat-label>Mot de passe</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <mat-form-field appearance="fill" class="fill-full-width">
-                    <mat-label>Confirm your password</mat-label>
+                    <mat-label>Confirmer votre mot de passe</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <div class="container-signup100-form-btn">                    
                     <button type="submit"  class="signup100-form-btn"   >
-                        submit
+                        Soumettre
                     </button>
                 </div>
             </div>     
