@@ -1,0 +1,41 @@
+
+.container{
+    margin-top: 15px;
+  }
+  table {
+      width: 100%;
+    }
+  
+    h2{
+      color: #5c5b5b;
+     font-family: 'Times New Roman', Times, serif;
+     font-size: 30px;
+   }
+   
+   #subtitle{
+      color: #808080;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 17px;
+   }
+   
+   
+    .button-create-icon {
+        width: 200px;
+        height: 100%;
+        color: #95c435;
+        font-size: 40px;
+        margin-right: -130px;
+    }
+   /* ---------------------- */
+     
+    table {
+      width: 100%;
+    }
+    .title-column{
+      text-align: center;
+    }
+    .table-column{
+      text-align: center;
+  
+      }
+     
