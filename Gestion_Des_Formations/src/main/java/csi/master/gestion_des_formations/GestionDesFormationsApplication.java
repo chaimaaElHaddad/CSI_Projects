@@ -12,7 +12,6 @@ public class GestionDesFormationsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionDesFormationsApplication.class, args);
 		
-		System.err.println(bCryptPasswordEncoder.encode("chaimaa"));
 	}
 
 }

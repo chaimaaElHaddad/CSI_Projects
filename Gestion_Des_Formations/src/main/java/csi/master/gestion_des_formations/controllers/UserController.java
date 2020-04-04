@@ -5,17 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import csi.master.gestion_des_formations.entities.User;
+import csi.master.gestion_des_formations.services.SecurityServiceI;
 import csi.master.gestion_des_formations.services.UserServiceI;
 
 @RestController
@@ -25,6 +30,10 @@ public class UserController {
 
 	@Autowired
 	private UserServiceI userService;
+	
+	@Autowired
+    private SecurityServiceI securityService;
+
 
 	@PostMapping(value = "/create")
 	public User createUser(@RequestBody User u) {
@@ -96,5 +105,41 @@ public class UserController {
 
 		return userService.findByUsername(username);
 	}
+	
+	
+	
+	//********************************** added by Intissar ***************************
+	@GetMapping("/registrationOauth")
+    public ModelAndView registration(Model model) {
+//        model.addAttribute("userForm", new User());
+
+        return new ModelAndView( "registration");
+    }
+
+    @PostMapping("/registrationOauth")
+    public ModelAndView registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+//        userValidator.validate(userForm, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "registration";
+//        }
+//
+//        userService.save(userForm);
+//
+//        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+
+        return new ModelAndView("loginSuccess");
+    }
+
+    @GetMapping("/loginOauth")
+    public ModelAndView login(Model model, String error, String logout) {
+//        if (error != null)
+//            model.addAttribute("error", "Your username and password is invalid.");
+//
+//        if (logout != null)
+//            model.addAttribute("message", "You have been logged out successfully.");
+
+        return new ModelAndView("loginSuccess");
+    }
 
 }
