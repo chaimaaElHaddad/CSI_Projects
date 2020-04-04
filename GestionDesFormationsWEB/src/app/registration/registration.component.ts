@@ -21,4 +21,5 @@ export class RegistrationComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
 }
