@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { Element } from 'src/app/_models/element';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-plan-training',
   templateUrl: './plan-training.component.html',
@@ -9,11 +12,24 @@ import { MatTableDataSource } from '@angular/material/table';
 })
  
 
-export class PlanTrainingComponent  {
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+export class PlanTrainingComponent implements OnInit {
+  displayedColumns: string[] = ['select', 'titre', 'duree', 'prix', 'N_T' , 'N_R'];
+  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  selection = new SelectionModel<Element>(true, []);
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  
+  constructor(private _formBuilder: FormBuilder) {}
 
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -29,32 +45,21 @@ export class PlanTrainingComponent  {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: Element): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 }
 
+ 
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const ELEMENT_DATA: Element[] = [
+  { id : 1 , titre : "Spring MVC", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  { id : 2 , titre : "Sbring Boot", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  { id : 3 , titre : "Strut", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  { id : 4,titre : "Spring Data", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  { id : 5 , titre : "Spring Security", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+   
 ];

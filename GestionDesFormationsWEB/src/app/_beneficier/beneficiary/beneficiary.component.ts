@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Formation } from 'src/app/_models/formation';
+import { PlanTrainingComponent } from '../plan-training/plan-training.component';
 
 @Component({
   selector: 'app-beneficiary',
@@ -34,7 +35,7 @@ export class BeneficiaryComponent implements OnInit {
     dialogConfig.height = "600px";
     dialogConfig.width = "900px";
 
-    const modalDialog = this.dialog.open(DetailsTrainingComponent, dialogConfig);
+    const modalDialog = this.dialog.open(PlanTrainingComponent, dialogConfig);
   }
 
 }

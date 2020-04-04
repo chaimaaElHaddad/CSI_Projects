@@ -19,19 +19,19 @@ export class FormateurComponent implements OnInit {
   displayedColumns: string[] = ['nom', 'etablissement', 'date' ,'prix' , 'action'];
   dataSource = new MatTableDataSource<Formation>(ELEMENT_DATA);
 
-
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
   }
+
   createnModal()
   {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
-    dialogConfig.height = "600px";
+    dialogConfig.height = "550px";
     dialogConfig.width = "940px";
 
     const modalDialog = this.dialog.open(CreateTrainingComponent, dialogConfig);
@@ -42,8 +42,8 @@ export class FormateurComponent implements OnInit {
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
-    dialogConfig.height = "600px";
-    dialogConfig.width = "900px";
+    dialogConfig.height = "550px";
+    dialogConfig.width = "940px";
 
     const modalDialog = this.dialog.open(UpdateTrainingComponent, dialogConfig);
   }

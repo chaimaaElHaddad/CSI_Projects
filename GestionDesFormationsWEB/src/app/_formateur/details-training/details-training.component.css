@@ -1,6 +1,6 @@
 .title{
     text-align: center;
-    color:#9ABB0A ;
+    color:#00695c;
     font-family:  Times, 'Times New Roman';
     font-size: 25px;
 
@@ -9,4 +9,10 @@
 table {
     width: 100%;
   }
-  
+  .title-column{
+    text-align: center;
+  }
+  .table-column{
+    text-align: center;
+
+    }
