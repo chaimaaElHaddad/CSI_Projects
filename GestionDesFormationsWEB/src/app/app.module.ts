@@ -1,26 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 
+import {MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION} from '@angular/material/checkbox';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule } from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTableModule} from '@angular/material/table';
 
-import { AppRoutingModule } from './app-routing.module';
+
+
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { BeneficiaryComponent } from './_dashboard/beneficiary/beneficiary.component';
-import { CreateCvComponent } from './_create/create-cv/create-cv.component';
-import { UpdateCvComponent } from './_update/update-cv/update-cv.component';
-import { PlanTrainingComponent } from './plan-training/plan-training.component';
-import { RegistrationTrainingComponent } from './registration-training/registration-training.component';
-import { FormateurComponent } from './_dashboard/formateur/formateur.component';
-import { CreateTrainingComponent } from './_create/create-training/create-training.component';
-import { UpdateTrainingComponent } from './_update/update-training/update-training.component';
-import { HeaderComponent } from './header/header.component';
+import { CreateCvComponent } from './_cv/create-cv/create-cv.component';
+import { UpdateCvComponent } from './_cv/update-cv/update-cv.component';
+import { FormateurComponent } from './_formateur/formateur/formateur.component';
+import { CreateTrainingComponent } from './_formateur/create-training/create-training.component';
+import { UpdateTrainingComponent } from './_formateur/update-training/update-training.component';
+import { HeaderComponent } from './_formateur/header/header.component';
+import { DetailsTrainingComponent } from './_formateur/details-training/details-training.component';
+import { BeneficiaryComponent } from './_beneficier/beneficiary/beneficiary.component';
+import { PlanTrainingComponent } from './_beneficier/plan-training/plan-training.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -30,25 +42,36 @@ import { HeaderComponent } from './header/header.component';
     BeneficiaryComponent,
     CreateCvComponent,
     UpdateCvComponent,
-    PlanTrainingComponent,
-    RegistrationTrainingComponent,
     FormateurComponent,
     CreateTrainingComponent,
     UpdateTrainingComponent,
-    HeaderComponent
+    HeaderComponent,
+    DetailsTrainingComponent,
+    PlanTrainingComponent,
+  
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatIconModule
-
+    MatIconModule ,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule
+   
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

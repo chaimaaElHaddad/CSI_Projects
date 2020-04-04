@@ -1,0 +1,103 @@
+    <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Creation de formation ' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="!isLinear"  #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Information</ng-template>
+        <div > 
+        <mat-form-field style="width: 100%;">
+          <mat-label >Nom</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+    </div>
+    <div > 
+        <mat-form-field style="width: 100%;">
+            <mat-label>Etabelissement</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>
+          </div>
+          <div  > 
+          <mat-form-field style="width: 100%;">
+            <mat-label>Date</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+        <div  > 
+          <mat-form-field style="width: 100%;">
+            <mat-label>Prix</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>
+         </div>
+        <div  >
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Plan </ng-template>
+        <div style="width: 100%;"> 
+        <mat-form-field>
+          <mat-label>Titre</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+    </div>
+    <div style="width: 100%;">
+        <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+        </div>
+        <div style="width: 100%;">
+          <mat-form-field>
+            <mat-label>prix</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup"> 
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Objectifs </ng-template>
+        <mat-form-field>
+          <mat-label>Objective</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Objective 1"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup"> 
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel>Prérequis </ng-template>
+        <mat-form-field>
+          <mat-label>Prérequis</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Prérequis 1"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Terminé</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
