@@ -10,8 +10,6 @@ import { AuthenticationService } from '../services/Authentication.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  username = '';
-  password = '';
   invalidLogin = false;
 
   constructor(private fb: FormBuilder,private router:Router,private authenticationService:AuthenticationService){
@@ -22,11 +20,12 @@ export class LoginComponent implements OnInit {
    }
   
   ngOnInit(){
+    
   }
 
   login(){
 
-      this.authenticationService.authenticate(this.username, this.password).subscribe( data => {
+      this.authenticationService.authenticate(this.loginForm.get('username').value, this.loginForm.get('password').value).subscribe( data => {
         sessionStorage.setItem('login',"true");
         sessionStorage.setItem('currentUser', JSON.stringify(data));
         this.invalidLogin = false;
