@@ -7,13 +7,12 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
+  hide = true;
+  email = new FormControl('', [Validators.required, Validators.email]);
   constructor() { }
 
   ngOnInit(): void {
   }
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
     if (this.email.hasError('required')) {

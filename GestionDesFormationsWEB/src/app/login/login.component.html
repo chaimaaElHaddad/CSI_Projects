@@ -1,46 +1,54 @@
-<mat-tab-group dynamicHeight mat-align-tabs="center">
-    <mat-tab label="S'identifier">     
+<mat-tab-group dynamicHeight mat-align-tabs="center" class="hello">
+    <mat-tab label="S'identifier" >     
 		<div class="registration" >
-        <div class="example-large-box mat-elevation-z4">
-			<header> 
-				<h2>Bienvenue</h2>		   	 
-			</header>
-					<form  class="login100-form " >
-						<div class="wrap-input100 m-b-26" >
-							<span class="label-input100">  Username </span>
-								<input class="input100" id="username" type="text" placeholder=""required />
-								<span class="focus-input100"></span>		
-						</div>
-						<br>
-						<div class="wrap-input100 m-b-26" >
-							<span class="label-input100"> Password </span>
-							<input class="input100" id="password" type="password" placeholder="" required />
-							<span class="focus-input100"></span>
-						</div>
-						<div class="container-login100-form-btn">
-							<button type="submit"   class="login100-form-btn"   >
-								LOGIN 
+			<div class="signup-form"> 
+				<header>
+					<h2>Bienvenue</h2>				 
+				</header>
+						 
+				<form class="registration-form">
+					<div class="form-group">
+						<mat-form-field appearance="fill" class="fill-full-width">
+							<mat-label>Nom d'utilisateur</mat-label>
+								<input matInput  class="example-right-align">
+								<span matPrefix><mat-icon>person</mat-icon></span>		 
+						</mat-form-field>
+					</div>
+			
+					<div class="form-group">
+						<mat-form-field appearance="fill"class="fill-full-width">
+							<mat-label>Mot de passe</mat-label>
+								<input matInput  class="example-right-align" type="password">
+								<span matPrefix><mat-icon>https</mat-icon></span>							 
+						</mat-form-field>
+					</div>
+		  
+					<div class="form-group">
+						<div class="container-signup100-form-btn">                    
+							<button type="submit"  class="signup100-form-btn"   >
+								Entrer
 							</button>
-							 
 						</div>
-					</form>
-
+					</div>    
 					<hr>
-					<div class="login-ask" style="text-align: center; color: #37474f;">
-						<h1>Ou connectez-vous avec</h1>
+					<div class="login-choice" style="text-align: center; color: #37474f;">
+						<h2>Ou connectez-vous avec</h2>
 					</div>
 					<div class="login-network"> 
-					<button mat-fab aria-label="Example icon-button with  facebook icons" style="background-color: #039be5;">
-						 f
-					</button>
-					<button mat-fab aria-label="Example icon-button with google icon" style="margin-left: 30px;" color="warn">
-						 G
-					</button>
+						<button mat-fab aria-label="Example icon-button with  facebook icons" style="background-color: #0D47A1;">
+							<div class="icon-1" >f</div>
+						</button>
+						<button mat-fab aria-label="Example icon-button with google icon" style="margin-left: 30px;" color="warn">
+							<div class="icon-2" >G</div>
+						</button>
 					</div>
-        </div>	
-	</div> 
-		</mat-tab>
-    <mat-tab label="S'inscrire">
+				</form>
+					
+			</div>
+		</div>  	 
+	</mat-tab>
+	<mat-tab label="S'inscrire">
         <app-registration></app-registration>
     </mat-tab>
 </mat-tab-group>
+

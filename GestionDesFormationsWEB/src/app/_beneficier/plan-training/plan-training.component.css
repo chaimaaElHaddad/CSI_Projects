@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+  }
+  
+  .title{
+    text-align: center;
+    color:#00695c;
+    font-family:  Times, 'Times New Roman';
+    font-size: 25px;
+
+}
+.title-column{
+  text-align: center;
+}
+.table-column{
+  text-align: center;
+
+  }
