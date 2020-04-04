@@ -16,7 +16,7 @@ public interface FormationServiceI {
 
 	List<Formation> getByFormateurId(Long id);
 	
-	List<Formation> getFormationsOfferedDuringTheNext30Days();
+	List<Formation> getFormationsPour30JoursSuivants();
 
 	List<Formation> getAll();
 

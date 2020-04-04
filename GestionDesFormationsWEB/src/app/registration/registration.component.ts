@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { User } from '../_model/user';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.services';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +12,10 @@ import { FormControl, Validators } from '@angular/forms';
 export class RegistrationComponent implements OnInit {
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
-  constructor() { }
+  user : User = new User();
+  errorMessage: string;
+
+  constructor(private router:Router,private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +26,14 @@ export class RegistrationComponent implements OnInit {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+  register() {
+    this.userService.registration(this.user).subscribe(data => {
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err);
+        this.errorMessage = "username already exist";
+      }
+    )
   }
 }

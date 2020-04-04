@@ -29,6 +29,7 @@ import { HeaderComponent } from './_formateur/header/header.component';
 import { DetailsTrainingComponent } from './_formateur/details-training/details-training.component';
 import { BeneficiaryComponent } from './_beneficier/beneficiary/beneficiary.component';
 import { PlanTrainingComponent } from './_beneficier/plan-training/plan-training.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -66,7 +67,8 @@ import { PlanTrainingComponent } from './_beneficier/plan-training/plan-training
     MatStepperModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
    
   ],
   providers: [

@@ -36,7 +36,7 @@ public class SupprimerInscriptionSchedule {
 				mail.setMailFrom("chaimaahaddad7@gmail.com");
 				mail.setMailTo(userElementInscription.getEmail());
 				mail.setMailSubject("Gestion des formations - Email pour réactiver l'inscription");
-				mail.setMailContent("Bonjour "+userElementInscription.getBeneficiaire().getFullName()+",\n\nTu dois réactiver ton inscription dans l'élément '"+userElementInscription.getElement().getName()+"' de la formation '"+userElementInscription.getElement().getFormation().getName()+"'.\n\nCordialement\nCSI_Group.");
+				mail.setMailContent("Bonjour "+userElementInscription.getBeneficiaire().getFullName()+",\n\nTu dois réactiver ton inscription dans l'élément '"+userElementInscription.getElement().getNom()+"' de la formation '"+userElementInscription.getElement().getFormation().getNom()+"'.\n\nCordialement\nCSI_Group.");
 				mailService.sendEmail(mail);
 				
 				userElementInscriptionService.delete(userElementInscription.getId());

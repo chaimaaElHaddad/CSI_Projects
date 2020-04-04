@@ -63,7 +63,7 @@ public class FormationServiceImpl implements FormationServiceI {
 	}
 
 	@Override
-	public List<Formation> getFormationsOfferedDuringTheNext30Days() {
+	public List<Formation> getFormationsPour30JoursSuivants() {
 		Calendar todayDate = Calendar.getInstance();
 		Calendar after30Days = Calendar.getInstance();
 		after30Days.add(Calendar.DATE, 30);

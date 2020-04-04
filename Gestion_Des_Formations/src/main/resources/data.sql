@@ -1,7 +1,7 @@
 
 INSERT INTO `role` VALUES ('BENEFICIAIRE','Bénéficiaire de formation'),('FORMATEUR','Formateur');
 
-INSERT INTO `users` VALUES (1,1,'Jamaa Mezouak, Tétouan','chaimaahaddad7@gmail.com','Chaimaa ElHaddad','chaimaa','0636954339','Chaimaa ElHaddad','BENEFICIAIRE'),(2,1,'Jamaa Mezouak, Tétouan','sarah.zoumhan@gmail.com','Sara Zoumhan','sara','06','Sara Zoumhan','BENEFICIAIRE'),(3,1,'Akba Halouf, Tétouan','intissar.harras@gmail.com','Intissar Harras','intissar','06','Intissar Harras','BENEFICIAIRE'),(4,1,'Wllah Man3raf','naanai@gmail.com','Naanai','naanai','06','Naanai','FORMATEUR');
+INSERT INTO `users` VALUES (1,'Jamaa Mezouak, Tétouan','chaimaahaddad7@gmail.com','Chaimaa ElHaddad','$2a$10$Ym/oBdRrJCoMugu83Vn8ZuFaWbSK20wvGgHmujVgcjYLAJzNA4rJS','0636954339','Chaimaa ElHaddad','BENEFICIAIRE'),(2,'Jamaa Mezouak, Tétouan','sarah.zoumhan@gmail.com','Sara Zoumhan','sara','06','Sara Zoumhan','BENEFICIAIRE'),(3,'Akba Halouf, Tétouan','intissar.harras@gmail.com','Intissar Harras','intissar','06','Intissar Harras','BENEFICIAIRE'),(4,'Wllah Man3raf','naanai@gmail.com','Naanai','naanai','06','Naanai','FORMATEUR');
 
 INSERT INTO `curriculum_vitae` VALUES (1,4);
 

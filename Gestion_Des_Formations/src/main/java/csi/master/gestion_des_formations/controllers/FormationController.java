@@ -45,10 +45,10 @@ public class FormationController {
 
 	}
 
-	@GetMapping(value = "/duringNext30Days")
-	public List<Formation> getFormationDuringTheNext30Days() {
+	@GetMapping(value = "/Next30Days")
+	public List<Formation> getFormationPour30JoursSuivants() {
 
-		return formationService.getFormationsOfferedDuringTheNext30Days();
+		return formationService.getFormationsPour30JoursSuivants();
 
 	}
 

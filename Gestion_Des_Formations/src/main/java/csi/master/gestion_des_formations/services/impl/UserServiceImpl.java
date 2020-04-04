@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import csi.master.gestion_des_formations.entities.User;
@@ -14,14 +15,13 @@ import csi.master.gestion_des_formations.services.UserServiceI;
 public class UserServiceImpl implements UserServiceI {
 	@Autowired
 	private IUserRepository userRepository;
-//	@Autowired
-//	private IRoleRepository roleRepository;
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public User save(User user) {
-		// user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
 
@@ -62,5 +62,10 @@ public class UserServiceImpl implements UserServiceI {
 	@Override
 	public List<User> getAll() {
 		return userRepository.findAll();
+	}
+
+	@Override
+	public List<User> getByRole(String role) {
+		return userRepository.findByRole(role);
 	}
 }

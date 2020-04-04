@@ -45,7 +45,7 @@ public class EvaluationController {
 	}
 
 	@GetMapping(value = "/element/{id}")
-	public Evaluation getByElement(@PathVariable Long id) {
+	public List<Evaluation> getByElement(@PathVariable Long id) {
 
 		return evaluationService.getByElementId(id);
 

@@ -1,73 +1,62 @@
 package csi.master.gestion_des_formations.controllers;
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import csi.master.gestion_des_formations.entities.User;
-import csi.master.gestion_des_formations.repositories.IRoleRepository;
 import csi.master.gestion_des_formations.services.UserServiceI;
 
 @RestController
-//@Secured(value= {"ROLE_ADMIN"})
 @RequestMapping(value = "/user")
 public class UserController {
 
 	@Autowired
 	private UserServiceI userService;
 
-	@Autowired
-	private IRoleRepository roleRepository;
-
 	@PostMapping(value = "/create")
-	public User save(User u) {
+	public User createUser(@RequestBody User u) {
 		return userService.save(u);
+	}
+
+	@PutMapping(value = "/update/{id}")
+	public User updateUser(@PathVariable Long id, @RequestBody User user) {
+		return userService.update(id, user);
+	}
+
+	@DeleteMapping(value = "/delete/{id}")
+	public void deleteUser(@PathVariable Long id) {
+		userService.delete(id);
+
 	}
 
 	@GetMapping(value = "/formateurs")
 	public List<User> getFormateurs() {
-		List<User> users = userService.getAll();
 
-		List<User> formateurs = new ArrayList<User>();
-
-		for (User user : users) {
-			if (user.getRole().equals(roleRepository.getOne("FORMATEUR"))) {
-				formateurs.add(user);
-			}
-
-		}
-
-		return formateurs;
+		return userService.getByRole("FORMATEUR");
 	}
 
 	@GetMapping(value = "/beneficiaires")
 	public List<User> getBeneficiaires() {
-		List<User> users = userService.getAll();
 
-		List<User> beneficiaires = new ArrayList<User>();
-
-		for (User user : users) {
-			if (user.getRole().equals(roleRepository.getOne("BENEFICIAIRE"))) {
-				beneficiaires.add(user);
-			}
-
-		}
-
-		return beneficiaires;
+		return userService.getByRole("BENEFICIAIRE");
 	}
 
 	@GetMapping("/formateur/{id}")
 	public User getFormateurById(@PathVariable Long id) {
 		User user = userService.getById(id);
 		if (user != null) {
-			if (user.getRole().equals(roleRepository.getOne("FORMATEUR"))) {
+			if (user.getRole() == "FORMATEUR") {
 				return user;
 			}
 		}
@@ -78,18 +67,32 @@ public class UserController {
 	public User getBeneficiaireById(@PathVariable Long id) {
 		User user = userService.getById(id);
 		if (user != null) {
-			if (user.getRole().equals(roleRepository.getOne("BENEFICIAIRE"))) {
+			if (user.getRole() == "BENEFICIAIRE") {
 				return user;
 			}
 		}
 		return null;
 	}
 
-	@GetMapping("/username")
-	public Principal getUser(Principal user) {
+	@PostMapping("/registration")
+	public User registration(@RequestBody User userForm) {
+
+		if (userService.findByUsername(userForm.getUsername()) != null)
+			return null;
+
+		User user = userService.save(userForm);
 
 		return user;
+	}
 
+	@GetMapping("/login")
+	public User login() {
+		UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder
+				.getContext().getAuthentication();
+
+		String username = authentication.getName();
+
+		return userService.findByUsername(username);
 	}
 
 }
