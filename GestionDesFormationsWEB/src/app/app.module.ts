@@ -34,6 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CvFormateurComponent } from './cv-formateur/cv-formateur.component';
 
 
 
@@ -54,6 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
     PlanTrainingComponent,
     CvDetailsComponent,
     ProfileComponent,
+    CvFormateurComponent,
   
   ],
   imports: [
