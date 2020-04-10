@@ -1,0 +1,27 @@
+#subtitle > h1 {
+    color: #2f2e33;
+     font-family: 'Times New Roman', Times, serif;
+     font-size: 30px;
+
+}
+
+.item > h1 {
+
+    text-align: center;
+    font-family: 'Times New Roman', Times;
+    background-color: #3a5199;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+.item > h3 {
+    font-family: 'Times New Roman', Times;
+    color: #2f2e33;
+    
+}
+
+.attributs {
+    font-family: 'Times New Roman', Times;
+    color: #2f2e33;
+    
+}
