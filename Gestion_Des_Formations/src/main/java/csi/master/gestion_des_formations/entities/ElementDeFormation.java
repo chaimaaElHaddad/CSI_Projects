@@ -18,6 +18,7 @@ public class ElementDeFormation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private String nom;
 	private Calendar date;
 	private int temps; // temps en minutes
 	private Long prix; // en MAD
@@ -28,14 +29,5 @@ public class ElementDeFormation {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Formation formation;
 
-//	@ManyToMany(mappedBy = "elementInscription")
-//	Set<User> beneficiaires;
-
-//	@OneToMany(mappedBy = "elementDeFormation")
-//    List<ElementInscription> inscriptions = new ArrayList<ElementInscription>();
-
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "beneficiaire_element")
-//	private List<User> beneficiaires = new ArrayList<User>();
 
 }

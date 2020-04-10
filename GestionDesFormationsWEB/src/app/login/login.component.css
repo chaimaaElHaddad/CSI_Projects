@@ -152,4 +152,12 @@ iframe {
   font-family: 'Times New Roman', Times;
   color: #555555;
  }
+
+ .login-msg {
+  color: #c51244;
+  text-align: center;
+  padding-top: 20px;
+  font-family: Poppins-Regular;
+  font-size: 17px;
+}
  

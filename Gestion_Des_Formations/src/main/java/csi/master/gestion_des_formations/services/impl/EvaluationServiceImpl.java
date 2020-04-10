@@ -52,7 +52,7 @@ public class EvaluationServiceImpl implements EvaluationServiceI {
 	}
 
 	@Override
-	public Evaluation getByElementId(Long id) {
+	public List<Evaluation> getByElementId(Long id) {
 		return evaluationRepository.findByElementId(id);
 	}
 

@@ -23,7 +23,7 @@ public class CurriculumVitaeController {
 	private CurriculumVitaeServiceI curriculumVitaeService;
 
 	@PostMapping(value = "/create")
-	public CurriculumVitae createCurriculumVitae(@RequestBody CurriculumVitae cvitae) {
+	public CurriculumVitae createCV(@RequestBody CurriculumVitae cvitae) {
 
 		return curriculumVitaeService.create(cvitae);
 	}
