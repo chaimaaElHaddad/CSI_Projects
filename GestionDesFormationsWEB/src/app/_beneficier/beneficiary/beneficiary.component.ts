@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Formation } from 'src/app/_models/formation';
 import { PlanTrainingComponent } from '../plan-training/plan-training.component';
-import { CvFormateurComponent } from 'src/app/cv-formateur/cv-formateur.component';
+import { CvFormateurComponent } from 'src/app/_beneficier/cv-formateur/cv-formateur.component';
 
 @Component({
   selector: 'app-beneficiary',
