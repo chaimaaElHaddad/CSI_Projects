@@ -54,7 +54,7 @@ export class FormateurComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "570px";
-    dialogConfig.width = "900px";
+    dialogConfig.width = "970px";
 
     const modalDialog = this.dialog.open(DetailsTrainingComponent, dialogConfig);
   }

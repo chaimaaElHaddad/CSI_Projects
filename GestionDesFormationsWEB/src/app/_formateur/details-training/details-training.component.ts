@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 import { Element } from 'src/app/_models/element';
+import { SelectionModel } from '@angular/cdk/collections';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-details-training',
@@ -11,8 +13,35 @@ import { Element } from 'src/app/_models/element';
 })
 export class DetailsTrainingComponent  {
   
-  displayedColumns: string[] = ['titre', 'duree', 'prix', 'N_T' , 'N_R' ];
+  displayedColumns: string[] = ['select', 'titre', 'duree', 'prix', 'N_T' , 'N_R'];
+
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  selection = new SelectionModel<Element>(true, []);
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Element): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
  
 }
 
