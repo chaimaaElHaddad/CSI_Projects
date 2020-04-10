@@ -5,6 +5,13 @@
   font-family: 'Roboto', sans-serif;
   margin-top: 0px;
   background-color:#efebe9 ;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
 }
   
 header {

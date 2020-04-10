@@ -53,7 +53,7 @@ export class FormateurComponent implements OnInit {
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
-    dialogConfig.height = "550px";
+    dialogConfig.height = "570px";
     dialogConfig.width = "900px";
 
     const modalDialog = this.dialog.open(DetailsTrainingComponent, dialogConfig);
