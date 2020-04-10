@@ -11,7 +11,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule } from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -65,7 +65,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-
+    MatTooltipModule,
     MatIconModule ,
     MatTableModule,
     MatPaginatorModule,

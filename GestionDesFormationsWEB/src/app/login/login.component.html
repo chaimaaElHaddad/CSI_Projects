@@ -10,7 +10,7 @@
 					<div class="form-group">
 						<mat-form-field appearance="fill" class="fill-full-width">
 							<mat-label>Nom d'utilisateur</mat-label>
-								<input matInput  class="example-right-align" type="text" 
+							<input matInput  class="example-right-align" type="text" 
 								formControlName="username" [ngClass]="{'is-invalid': (loginForm.get('username').touched ||
 								loginForm.get('username').dirty) && !loginForm.get('username').valid }" required>
 								<span matPrefix><mat-icon>person</mat-icon></span>		 
@@ -18,9 +18,9 @@
 					</div>
 			
 					<div class="form-group">
-						<mat-form-field appearance="fill"class="fill-full-width">
+						<mat-form-field appearance="fill" class="fill-full-width">
 							<mat-label>Mot de passe</mat-label>
-								<input matInput  class="example-right-align" type="password" formControlName="password" [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
+							<input matInput  class="example-right-align" type="password" formControlName="password" [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
 								loginForm.get('password').dirty) && !loginForm.get('password').valid }"
 								 required>
 								<span matPrefix><mat-icon>https</mat-icon></span>							 
@@ -33,11 +33,11 @@
 								Entrer
 							</button>
 						</div>
-						<h6 *ngIf="!invalidLogin" class="login-msg">GOOD</h6>
+						<!-- <h6 *ngIf="!invalidLogin" class="login-msg">GOOD</h6> -->
 						<h6 *ngIf="invalidLogin" class="login-msg">Vos informations d'identification sont incorrectes</h6>
 					</div>    
 					<hr>
-					<div class="login-choice" style="text-align: center; color: #37474f;">
+					<div class="login-choice" style="text-align: center; color: #75b1a9;">
 						<h2>Ou connectez-vous avec</h2>
 					</div>
 					<div class="login-network"> 
