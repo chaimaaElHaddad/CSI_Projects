@@ -7,13 +7,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./update-cv.component.css']
 })
 export class UpdateCvComponent implements OnInit {
-
-
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -24,6 +21,10 @@ export class UpdateCvComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-  }
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+    
 
+  }
 }

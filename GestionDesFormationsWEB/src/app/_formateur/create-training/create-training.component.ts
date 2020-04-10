@@ -7,12 +7,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-training.component.css']
 })
 export class CreateTrainingComponent implements OnInit {
-  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
-
+  fourthFormGroup : FormGroup;
+  
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -21,6 +20,9 @@ export class CreateTrainingComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
     });
   }
 }
