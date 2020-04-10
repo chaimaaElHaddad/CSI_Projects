@@ -20,6 +20,7 @@ export class PlanTrainingComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   
+  
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {

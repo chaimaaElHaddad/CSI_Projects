@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
+  
   {path: '' ,redirectTo: 'login', pathMatch:'full'},
   {path: 'login' , component: LoginComponent},
   {path: 'registration' , component: RegistrationComponent},
@@ -26,8 +27,7 @@ const routes: Routes = [
   {path: 'updateCv' , component: UpdateCvComponent},
   {path: 'detailsCv' , component: CvDetailsComponent},
   {path: 'profile' , component: ProfileComponent},
-   
-
+  {path: 'beneficier' , component: BeneficiaryComponent},
    
 ];
 

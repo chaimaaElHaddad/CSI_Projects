@@ -1,31 +1,31 @@
-.container{
+  .container{
     margin-top: 15px;
   }
+
   table {
-      width: 100%;
-    }
+    width: 100%;
+  }
   
-    h2{
-      color: #5c5b5b;
-     font-family: 'Times New Roman', Times, serif;
-     font-size: 25px;
-   }
-   
-   #subtitle{
-      color: #808080;
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 17px;
-   }
-   
-   
-     
-    table {
-      width: 100%;
-    }
-    .title-column{
-      text-align: center;
-    }
-    .table-column{
-      text-align: center;
+  h2{
+    color: #2f2e33;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+  }
+
+  #subtitle{
+    color: #c1c2bf;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+ }
+
+  table {
+    width: 100%;
+  }
   
-      }
+  .title-column{
+    text-align: center;
+  }
+
+  .table-column{
+    text-align: center;
+  }

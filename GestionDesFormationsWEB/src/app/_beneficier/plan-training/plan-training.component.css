@@ -2,13 +2,12 @@ table {
     width: 100%;
   }
   
-  .title{
+  .titre{
     text-align: center;
-    color:#00695c;
-    font-family:  Times, 'Times New Roman';
-    font-size: 25px;
-
-}
+    color: #3a5199;
+    font-family: 'Times New Roman', Times;
+  }  
+  
 .title-column{
   text-align: center;
 }
