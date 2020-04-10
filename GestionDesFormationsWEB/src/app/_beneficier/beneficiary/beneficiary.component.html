@@ -1,61 +1,62 @@
 <app-header></app-header>
 <div class="container"> 
-<h2> Formation </h2>
-    <div class="row">
-        <div class="col-sm-6 col-xl" id="subtitle"> 
-            <p> Formation disponible</p>
+    <div class="beneficier" >
+        <h2> Formation </h2>
+        <div class="row">
+            <div class="col-sm-6 col-xl" id="subtitle"> 
+                <p> Formation disponible</p>
+            </div>
+        </div>
+
+        <div class="mat-elevation-z8" style="margin-top: 25px;">
+            <table mat-table [dataSource]="dataSource">
+  
+                <!-- Nom Column -->
+                <ng-container matColumnDef="nom" class="culumn">
+                    <th mat-header-cell *matHeaderCellDef class="title-column"> Nom </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> {{element.nom}} </td>
+                </ng-container>
+  
+                <!-- Etablissement Column -->
+                <ng-container matColumnDef="etablissement">
+                    <th mat-header-cell *matHeaderCellDef  class="title-column"> Etabelissement </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> {{element.etablissement}} </td>
+                </ng-container>
+  
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef  class="title-column"> Date </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> {{element.date}} </td>
+                </ng-container>
+
+                <!-- Prix Column -->
+                <ng-container matColumnDef="prix">
+                    <th mat-header-cell *matHeaderCellDef  class="title-column"> Prix </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> {{element.prix}} </td>
+                </ng-container>
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="formateur">
+                    <th mat-header-cell *matHeaderCellDef  class="title-column"> Formateur </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> 
+                        <a href=""   > Lien de cv de formateur </a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef  class="title-column"> Plan </th>
+                    <td mat-cell *matCellDef="let element" class="table-column"> 
+                        <a type="button"  (click)="detailModal()">
+                        <mat-icon  matTooltip="Details" aria-hidden="false" aria-label="edit icon" style="color: #3a5199; margin-left: 15px;">chrome_reader_mode</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+  
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+  
+            <mat-paginator [pageSizeOptions]="[30, 40, 50]" showFirstLastButtons></mat-paginator>
         </div>
     </div>
-
-      <div class="mat-elevation-z8" style="margin-top: 25px;">
-        <table mat-table [dataSource]="dataSource">
-  
-            <!-- Nom Column -->
-            <ng-container matColumnDef="nom" class="culumn">
-              <th mat-header-cell *matHeaderCellDef class="title-column"> Nom </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> {{element.nom}} </td>
-            </ng-container>
-  
-            <!-- Etablissement Column -->
-            <ng-container matColumnDef="etablissement">
-              <th mat-header-cell *matHeaderCellDef  class="title-column"> Etabelissement </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> {{element.etablissement}} </td>
-            </ng-container>
-  
-            <!-- Date Column -->
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef  class="title-column"> Date </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> {{element.date}} </td>
-            </ng-container>
-
-            <!-- Prix Column -->
-            <ng-container matColumnDef="prix">
-              <th mat-header-cell *matHeaderCellDef  class="title-column"> Prix </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> {{element.prix}} </td>
-            </ng-container>
-
-            <!-- Action Column -->
-            <ng-container matColumnDef="formateur">
-              <th mat-header-cell *matHeaderCellDef  class="title-column"> Formateur </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> 
-                  <a href=""   > Lien de cv de formateur </a>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef  class="title-column"> Plan </th>
-              <td mat-cell *matCellDef="let element" class="table-column"> 
-                <a type="button"  (click)="detailModal()">
-                  <mat-icon  matTooltip="Details" aria-hidden="false" aria-label="edit icon" style="color: #00695c; margin-left: 15px;">chrome_reader_mode</mat-icon>
-                </a>
-              </td>
-            </ng-container>
-  
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-  
-        <mat-paginator [pageSizeOptions]="[30, 40, 50]" showFirstLastButtons></mat-paginator>
-
-      </div>
 </div>
