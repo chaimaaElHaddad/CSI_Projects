@@ -28,13 +28,12 @@ import { UpdateTrainingComponent } from './_formateur/update-training/update-tra
 import { DetailsTrainingComponent } from './_formateur/details-training/details-training.component';
 import { BeneficiaryComponent } from './_beneficier/beneficiary/beneficiary.component';
 import { PlanTrainingComponent } from './_beneficier/plan-training/plan-training.component';
-<<<<<<< HEAD
+
 import { CvDetailsComponent } from './_cv/cv-details/cv-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
-=======
+
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> 77b31d0abb5e8ff9a17530b2458fd98177479a48
 
 
 

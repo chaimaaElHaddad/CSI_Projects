@@ -27,9 +27,9 @@ export class RegistrationComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-<<<<<<< HEAD
 
-=======
+
+
   register() {
     this.userService.registration(this.user).subscribe(data => {
         this.router.navigate(['/login']);
@@ -39,5 +39,5 @@ export class RegistrationComponent implements OnInit {
       }
     )
   }
->>>>>>> 77b31d0abb5e8ff9a17530b2458fd98177479a48
+
 }
