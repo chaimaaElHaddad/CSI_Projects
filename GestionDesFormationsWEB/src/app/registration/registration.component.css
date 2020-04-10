@@ -107,3 +107,19 @@ header {
   .signup100-form-btn:hover {
   background-color: #333333;
   }
+
+  .erreur-msg {
+    color: #c51244;
+    text-align: center;
+    padding-top: 20px;
+    font-family: Poppins-Regular;
+    font-size: 17px;
+  }
+
+  .msg {
+    color: #00695c;
+    text-align: center;
+    padding-top: 20px;
+    font-family: Poppins-Regular;
+    font-size: 17px;
+  }
