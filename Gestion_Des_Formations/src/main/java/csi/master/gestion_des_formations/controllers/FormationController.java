@@ -3,6 +3,7 @@ package csi.master.gestion_des_formations.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,26 +18,30 @@ import csi.master.gestion_des_formations.services.FormationServiceI;
 
 @RestController
 @RequestMapping(value = "/formation")
+@CrossOrigin("http://localhost:4200")
 public class FormationController {
 
 	@Autowired
 	private FormationServiceI formationService;
 
 	@PostMapping(value = "/create")
-	public Formation createFormation(@RequestBody Formation formation) {
+	public List<Formation> createFormation(@RequestBody Formation formation) {
 
-		return formationService.create(formation);
+		formationService.create(formation);
+		return formationService.getByFormateurId(formation.getFormateur().getId());
 	}
 
 	@PutMapping(value = "/update/{id}")
-	public Formation updateFormation(@PathVariable Long id, @RequestBody Formation formation) {
-		return formationService.update(id, formation);
+	public List<Formation> updateFormation(@PathVariable Long id, @RequestBody Formation formation) {
+		formationService.update(id, formation);
+		return formationService.getByFormateurId(formation.getFormateur().getId());
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public void deleteFormation(@PathVariable Long id) {
+	public List<Formation> deleteFormation(@PathVariable Long id) {
+		Long formateurId = formationService.getById(id).getFormateur().getId();
 		formationService.delete(id);
-
+		return formationService.getByFormateurId(formateurId);
 	}
 
 	@GetMapping(value = "/all")
@@ -56,6 +61,13 @@ public class FormationController {
 	public List<Formation> getByFormateur(@PathVariable Long id) {
 
 		return formationService.getByFormateurId(id);
+
+	}
+	
+	@GetMapping(value = "/{id}")
+	public Formation getById(@PathVariable Long id) {
+
+		return formationService.getById(id);
 
 	}
 

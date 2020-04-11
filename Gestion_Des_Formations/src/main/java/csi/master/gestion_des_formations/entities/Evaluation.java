@@ -22,34 +22,28 @@ public class Evaluation {
 	private Long elementId;
 	
 	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> accueilCriteres = new HashMap<String, Integer>(); //<critère,note>  note/10
+	private Map<String, Integer> accueilCriteresNotes = new HashMap<String, Integer>(); //<critère,note>  note/10
 	
 	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> formateurCriteres = new HashMap<String, Integer>(); //<critère,note>
+	private Map<String, Integer> formateurCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
 	
 	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> contenuCriteres = new HashMap<String, Integer>(); //<critère,note>
+	private Map<String, Integer> contenuCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
+ 
 	
-	private int score; //somme des notes / 10*nbInscription == note global n'est pas score
-	
-	public int getScore() {
-		int accueilScore = 0;
-		for (int note : this.getAccueilCriteres().values()) {
-			accueilScore += note;
-		}
+	public Evaluation() {
+		accueilCriteresNotes.put("propreté", 0);
+		accueilCriteresNotes.put("matériel", 0);
+		accueilCriteresNotes.put("propreté matériel ", 0);
 		
-		int formateurScore = 0;
-		for (int note : this.getFormateurCriteres().values()) {
-			formateurScore += note;
-		}
+		formateurCriteresNotes.put("", 0);
+		formateurCriteresNotes.put("", 0);
+		formateurCriteresNotes.put("", 0);
 		
-		int contenuScore = 0;
-		for (int note : this.getContenuCriteres().values()) {
-			contenuScore += note;
-		}
-		this.score =  accueilScore + formateurScore + contenuScore;
-		
-		return score;
+		contenuCriteresNotes.put("", 0);
+		contenuCriteresNotes.put("", 0);
+		contenuCriteresNotes.put("", 0);
+		contenuCriteresNotes.put("", 0);
 	}
 		
 }

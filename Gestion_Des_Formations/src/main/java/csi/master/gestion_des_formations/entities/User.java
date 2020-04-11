@@ -29,7 +29,6 @@ public class User implements Serializable {
 	private String nom;
 	private String username;
 	private String password;
-	// private int actived;
 
 	@Email
 	private String email;

@@ -57,10 +57,7 @@ export class PlanTrainingComponent implements OnInit {
  
 
 const ELEMENT_DATA: Element[] = [
-  { id : 1 , titre : "Spring MVC", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
-  { id : 2 , titre : "Sbring Boot", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
-  { id : 3 , titre : "Strut", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
-  { id : 4,titre : "Spring Data", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
-  { id : 5 , titre : "Spring Security", duree: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  //{ id : 1 , nom : "Spring MVC", temps: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
+  //{ id : 2 , nom : "Sbring Boot", temps: 4 , prix: 120 , nombre_totale: 15 , nombre_rester: 2  },
    
 ];

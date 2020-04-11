@@ -17,5 +17,9 @@ public interface EvaluationServiceI {
 	List<Evaluation> getByElementId(Long id);
 
 	List<Evaluation> getAll();
+	
+	int getEvaluationNote(Evaluation evaluation);
+	
+	int getScoreByElementId(Long elementId);
 
 }
