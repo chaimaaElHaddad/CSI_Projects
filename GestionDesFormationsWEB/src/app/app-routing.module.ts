@@ -8,7 +8,6 @@ import { UpdateTrainingComponent } from './_formateur/update-training/update-tra
 import { CreateCvComponent } from './_cv/create-cv/create-cv.component';
 import { UpdateCvComponent } from './_cv/update-cv/update-cv.component';
 import { BeneficiaryComponent } from './_beneficier/beneficiary/beneficiary.component';
-import { PlanTrainingComponent } from './_beneficier/plan-training/plan-training.component';
 import { CvDetailsComponent } from './_cv/cv-details/cv-details.component';
 import { ProfileComponent } from './profile/profile.component';
 

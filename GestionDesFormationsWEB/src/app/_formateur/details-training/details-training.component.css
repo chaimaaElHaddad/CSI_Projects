@@ -20,9 +20,10 @@ table {
 .button-create-icon {
   width: 200px;
   height: 100%;
-  color: #00695c;;
+  color: #3a5199;
   font-size: 40px;
   margin-right: -130px;
+  margin-top: 20px;
 }
 .sous-titre{
   color: #5c5b5b;
@@ -34,4 +35,25 @@ table {
   width: 800px;
   margin-left: auto;
   margin-right: auto;
+}
+
+h2{
+  color: #3a5199;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+h3{
+  color: #5c5b5b;
+  font-family: 'Times New Roman', Times, serif;
+   
+  
+}
+
+h4{
+  color: #5c5b5b;
+  font-family: 'Times New Roman', Times, serif;
+ 
+  
 }
