@@ -1,1 +1,76 @@
-<p>profile works!</p>
+<app-header></app-header>
+<div class="container" style="margin-top: 40px;">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active" style="color: #3a5199; font-size: larger;">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link" style="color: #3a5199; font-size: larger;">Edit</a>
+                </li>
+            </ul>
+        <div class="tab-content py-4">
+            <div class="tab-pane active" id="profile">
+                <div class="item">
+                    Nom  : 
+                 </div>
+
+                 <div class="item" >
+                    Prenom :
+                 </div>
+              
+                 <div class="item" >
+                    Nom d'utilisateur :
+                 </div>
+
+                 <div class="item">
+                    Numero de telephone :
+                 </div>
+            
+                 <div class="item">
+                    Email :
+                 </div>
+       
+            </div>
+
+            <div class="tab-pane" id="edit">
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Nom</mat-label>
+                    <input matInput placeholder="" required>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Prenom</mat-label>
+                    <input matInput placeholder="" required>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Nom d'utilisateur</mat-label>
+                    <input matInput placeholder="" required>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Email</mat-label>
+                    <input matInput placeholder=""  required>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Numero de telephone </mat-label>
+                    <input matInput placeholder=""  required>
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Mot de passe</mat-label>
+                    <input matInput placeholder=""  required>
+                </mat-form-field>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-secondary" style="margin-right: 5px; width: 130px ;" >Annuler</button>
+                    <button mat-button  class="btn btn-success"  style="background-color: #3a5199; border: #3a5199; width: 130px;">Enregistrer</button>   
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+ 
