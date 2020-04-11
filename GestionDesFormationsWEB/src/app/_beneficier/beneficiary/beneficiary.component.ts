@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Formation } from 'src/app/_models/formation';
 import { PlanTrainingComponent } from '../plan-training/plan-training.component';
 import { CvFormateurComponent } from 'src/app/_beneficier/cv-formateur/cv-formateur.component';
+import { EvaluationFormationComponent } from '../evaluation-formation/evaluation-formation.component';
 
 @Component({
   selector: 'app-beneficiary',
@@ -15,7 +16,7 @@ import { CvFormateurComponent } from 'src/app/_beneficier/cv-formateur/cv-format
 export class BeneficiaryComponent implements OnInit {
   constructor(public dialog: MatDialog ) {}
     
-  displayedColumns: string[] = ['nom', 'etablissement', 'date' ,'prix' , 'formateur' , 'action' ];
+  displayedColumns: string[] = ['nom', 'etablissement', 'date' ,'prix' , 'formateur' , 'action' , 'evaluation' ];
   dataSource = new MatTableDataSource<Formation>(ELEMENT_DATA);
 
 
@@ -45,6 +46,17 @@ export class BeneficiaryComponent implements OnInit {
     dialogConfig.width = "900px";
 
     const modalDialog = this.dialog.open(CvFormateurComponent, dialogConfig);
+  }
+
+  evaluateModal(){
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "600px";
+    dialogConfig.width = "900px";
+
+    const modalDialog = this.dialog.open( EvaluationFormationComponent  , dialogConfig);
   }
 }
  
