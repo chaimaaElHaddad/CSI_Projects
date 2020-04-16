@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../_models/user';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,5 +37,6 @@ export class AuthenticationService {
     sessionStorage.setItem('currentUser',"");
     this.router.navigate(['/login']);
   }
+
 
 }
