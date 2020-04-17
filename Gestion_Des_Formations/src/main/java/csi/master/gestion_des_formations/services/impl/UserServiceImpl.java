@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import csi.master.gestion_des_formations.entities.User;
@@ -16,12 +15,10 @@ public class UserServiceImpl implements UserServiceI {
 	@Autowired
 	private IUserRepository userRepository;
 	
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public User save(User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setPassword("{noop}"+user.getPassword());
 		return userRepository.save(user);
 	}
 

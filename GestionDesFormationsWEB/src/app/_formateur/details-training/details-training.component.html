@@ -2,41 +2,56 @@
   <mat-tab label="Presentation" > 
     <div class="formation" >
      <h2>Fromation</h2>
-        <div class="row">
 
-          <div class="col-sm-6"> 
-            <div class="form-group row">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Nom de Formation : </label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> .... </label>
-            </div>     
-            </div>
+          <div class="form-group row"> 
             <div class="col-sm-6">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Etabelissement :</label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> ...... </label>
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Nom de Formation : </label>
+              {{data.formation.nom}}
+            </div>     
+            <div class="col-sm-6">
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Nom de Formateur :</label>
+              {{data.formation.formateur.prenom}} {{data.formation.formateur.nom}}
+            </div>
           </div>
 
-          <div class="col-sm-6"> 
-            <div class="form-group row">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Date : </label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> .... </label>
-            </div>     
-            </div>
+          <div class="form-group row"> 
             <div class="col-sm-6">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prix :</label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> .... </label>
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Date : </label>
+              {{data.formation.date | date}}
+            </div>     
+            <div class="col-sm-6">
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Etablissement :</label>
+              {{data.formation.accueil}}
+            </div>
           </div>
 
-          <div class="col-sm-6"> 
-            <div class="form-group row">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Objectifs : </label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> .... </label>
-            </div>     
-            </div>
+          <div class="form-group row"> 
             <div class="col-sm-6">
-              <label class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prérequis :</label>
-              <label class="col-lg-7 col-form-label form-control-label" id="attribbuts"> .... </label>
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prix Total : </label>
+              {{data.formation.prix}} MAD
             </div>
-        </div>
+          </div>
+
+          <div class="form-group row"> 
+            <div class="col-sm-12">
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Objectifs : </label>
+              {{data.formation.objectifs}}
+            </div>
+          </div>
+
+          <div class="form-group row"> 
+            <div class="col-sm-12">
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prérequis : </label>
+              {{data.formation.prerequis}}
+            </div>
+          </div>
+
+          <div class="form-group row"> 
+            <div class="col-sm-12">
+              <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Description : </label>
+              {{data.formation.description}}
+            </div>
+          </div>
 
         
       <hr>
@@ -52,14 +67,10 @@
           <div class="col-sm-5"> 
               <h2 >Plan</h2>
           </div>
-          <div class="col-sm-7">
-            <div class="col-sm-4 col-xl">
-              <a class="button-create float-right" type="button" value="button"  ><mat-icon  class="button-create-icon" aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon></a>
-            </div>
-          </div>
       </div>
       
 <!-- Elements de plan  -->
+
     <div>
       <h3> Element Nom </h3>
       <h4>Durée</h4> 
@@ -67,6 +78,14 @@
       <h4>Nombre Totale</h4>
       <h4> Nombre des inscrits</h4>
     </div>
+
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="col-sm-4 col-xl">
+          <a class="button-create float-right" type="button" value="button"  ><mat-icon  class="button-create-icon" aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon></a>
+        </div>
+      </div>
+  </div>
 
 <!-- Ajouter un element  -->
       <form>

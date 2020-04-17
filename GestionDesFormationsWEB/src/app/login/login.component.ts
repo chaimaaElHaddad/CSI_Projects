@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         if(data.role == "FORMATEUR"){
           this.router.navigate(['/formateur']);
         }else if(data.role == "BENEFICIAIRE"){
-        this.router.navigate(['/beneficiaire']);
+        this.router.navigate(['/formateur']);
         }
       },
 
@@ -42,6 +42,16 @@ export class LoginComponent implements OnInit {
       }
       );
       
+  }
+
+  oauth_login(){
+    this.authenticationService.oauth_authenticate().subscribe(data =>{
+
+    },
+    error => {
+      sessionStorage.setItem('login',"false");
+      this.invalidLogin = true;
+    });
   }
 
   

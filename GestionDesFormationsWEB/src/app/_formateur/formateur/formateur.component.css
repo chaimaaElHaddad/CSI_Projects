@@ -27,6 +27,22 @@
       font-family: 'Times New Roman', Times, serif;
       font-size: 17px;
    }
+
+   .checkbox-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .checkbox-margin {
+    margin: 0 10px;
+  }
+
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color:  #3a5199 !important;
+}
    
    
   .button-create-icon {
