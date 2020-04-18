@@ -5,7 +5,7 @@
 				<header>
 					<h2>Bienvenue</h2>				 
 				</header>
-						 
+				<div *ngIf="loggedIn===false">		 
 				<form [formGroup]="loginForm" class="registration-form">
 					<div class="form-group">
 						<mat-form-field appearance="fill" class="fill-full-width">
@@ -40,15 +40,15 @@
 						<h2>Ou connectez-vous avec</h2>
 					</div>
 					<div class="login-network"> 
-						<button mat-fab aria-label="Example icon-button with  facebook icons" style="background-color: #0D47A1;">
+						<button mat-fab aria-label="Example icon-button with  facebook icons" style="background-color: #0D47A1;" (click)="signInWithFB()">
 							<div class="icon-1" >f</div>
 						</button>
-						<button mat-fab aria-label="Example icon-button with google icon" style="margin-left: 30px;" color="warn">
+						<button mat-fab aria-label="Example icon-button with google icon" style="margin-left: 30px;" color="warn" (click)="signInWithGG()">
 							<div class="icon-2" >G</div>
 						</button>
 					</div>
 				</form>
-					
+				</div>
 			</div>
 		</div>  	 
 	</mat-tab>

@@ -107,39 +107,4 @@ public class UserController {
 		return user;
 	}
 
-	// ********************************** added by Intissar
-	// ***************************
-	@GetMapping("/registrationOauth")
-	public ModelAndView registration(Model model) {
-//        model.addAttribute("userForm", new User());
-
-		return new ModelAndView("registration");
-	}
-
-	@PostMapping("/registrationOauth")
-	public ModelAndView registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-//        userValidator.validate(userForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
-//
-//        userService.save(userForm);
-//
-//        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-		return new ModelAndView("loginSuccess");
-	}
-
-	@GetMapping("/loginOauth")
-	public ModelAndView login(Model model, String error, String logout) {
-//        if (error != null)
-//            model.addAttribute("error", "Your username and password is invalid.");
-//
-//        if (logout != null)
-//            model.addAttribute("message", "You have been logged out successfully.");
-
-		return new ModelAndView("loginSuccess");
-	}
-
 }

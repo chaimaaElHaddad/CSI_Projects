@@ -36,6 +36,26 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CvFormateurComponent } from './_beneficier/cv-formateur/cv-formateur.component';
 import { EvaluationFormationComponent } from './_beneficier/evaluation-formation/evaluation-formation.component';
+import { SocialLoginModule,GoogleLoginProvider, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+
+
+
+
+
+
+const config = new AuthServiceConfig([
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('217776902659926')
+  },
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('644975908506-elijbc79q1ka1iadrmsi3gvo8tk3qrcn.apps.googleusercontent.com')
+  }
+]);
+export function provideConfig() {
+  return config;
+}
 
 
 
@@ -78,11 +98,17 @@ import { EvaluationFormationComponent } from './_beneficier/evaluation-formation
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
    
   ],
   providers: [
-    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}
+    {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},
+    ,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
 
   ],
   bootstrap: [AppComponent]
