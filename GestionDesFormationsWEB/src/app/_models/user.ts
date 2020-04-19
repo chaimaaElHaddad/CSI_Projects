@@ -1,3 +1,5 @@
+import { UserElementInscription } from './userElementInscription';
+
 export class User{
     id: number;
     prenom: string;

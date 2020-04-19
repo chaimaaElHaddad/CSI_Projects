@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../_models/user';
 import { Observable } from 'rxjs';
-import { Formation } from '../_models/formation';
 import { Element } from '../_models/element';
+import { Evaluation } from '../_models/evaluation';
 
  
 
 @Injectable({ providedIn: 'root' })
-export class ElementService {
+export class EvaluationService {
   
   currentUser : User;
     
@@ -16,40 +16,35 @@ export class ElementService {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
      }
 
-    baseURL = "http://localhost:8080/elementDeFormation";
+    baseURL = "http://localhost:8080/evaluation";
 
 
 
-    getElementByFormation(formationId: number): Observable<Element[]>{
+    getEvaluationByElement(element: Element): Observable<Evaluation[]>{
+      console .log(element);
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
     
-        return this.http.get<Element[]>(this.baseURL+'/formation/'+formationId,{headers});
+        return this.http.get<Evaluation[]>(this.baseURL+'/element/'+element.id,{headers});
+    }
+
+
+    getScoreByElement(element: Element): Observable<any>{
+      console .log(element);
+      const headers = new HttpHeaders({
+        Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
+      });
+    
+        return this.http.get<Evaluation[]>(this.baseURL+'/score/'+element.id,{headers});
     }
     
-    createElement(element : Element, formationId: number): Observable<any>{
+    createEvaluation(evaluation : Evaluation): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
-      return this.http.post(this.baseURL+'/create/'+formationId,element,{headers});
-    }
-
-    updateElement(element : Element): Observable<any>{
-      const headers = new HttpHeaders({
-        Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
-      });
-
-      return this.http.put(this.baseURL+'/update/'+element.id,element,{headers});
-    }
-
-    deleteElement(id : number): Observable<any>{
-      const headers = new HttpHeaders({
-        Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
-      });
-
-      return this.http.delete(this.baseURL+'/delete/'+id,{headers});
+      return this.http.post(this.baseURL+'/create',evaluation,{headers});
     }
 
 }

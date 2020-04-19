@@ -3,6 +3,7 @@ package csi.master.gestion_des_formations.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,20 +18,23 @@ import csi.master.gestion_des_formations.services.ElementDeFormationServiceI;
 
 @RestController
 @RequestMapping(value = "/elementDeFormation")
+@CrossOrigin("http://localhost:4200")
 public class ElementDeFormationContoller {
 
 	@Autowired
 	private ElementDeFormationServiceI elementDeFormationService;
+	
+	
 
-	@PostMapping(value = "/create")
-	public List<ElementDeFormation> createElementDeFormation(@RequestBody ElementDeFormation element) {
-
-		elementDeFormationService.create(element);
-		return elementDeFormationService.getByFormationId(element.getFormation().getId());
+	@PostMapping(value = "/create/{formationId}")
+	public List<ElementDeFormation> createElementDeFormation(@RequestBody ElementDeFormation element,@PathVariable Long formationId) {
+		elementDeFormationService.create(element, formationId);
+		return elementDeFormationService.getByFormationId(formationId);
 	}
 
 	@PutMapping(value = "/update/{id}")
-	public List<ElementDeFormation> updateElementDeFormation(@PathVariable Long id, @RequestBody ElementDeFormation element) {
+	public List<ElementDeFormation> updateElementDeFormation(@PathVariable Long id,
+			@RequestBody ElementDeFormation element) {
 		elementDeFormationService.update(id, element);
 		return elementDeFormationService.getByFormationId(element.getFormation().getId());
 	}
@@ -44,14 +48,17 @@ public class ElementDeFormationContoller {
 
 	@GetMapping(value = "/all")
 	public List<ElementDeFormation> getAll() {
-		return elementDeFormationService.getAll();
+		List<ElementDeFormation> elementDeFormations = elementDeFormationService.getAll();
+
+		return elementDeFormations;
 
 	}
 
 	@GetMapping(value = "/formation/{id}")
 	public List<ElementDeFormation> getByFormation(@PathVariable Long id) {
 
-		return elementDeFormationService.getByFormationId(id);
+		List<ElementDeFormation> elementDeFormations = elementDeFormationService.getByFormationId(id);
+		return elementDeFormations;
 
 	}
 

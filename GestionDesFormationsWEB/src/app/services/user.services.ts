@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../_models/user';
 
  
@@ -7,9 +7,13 @@ import { User } from '../_models/user';
 @Injectable({ providedIn: 'root' })
 export class UserService {
     
-    constructor(private http: HttpClient) { }
+  currentUser : User;
+    
+  constructor(private http: HttpClient) {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+   }
 
-    baseURL = "http://localhost:8080/user/registration";
+    baseURL = "http://localhost:8080/user";
 
     //getAll() {
       //  return this.http.get<User[]>(`${this.loginURL}`);
@@ -17,7 +21,7 @@ export class UserService {
 
 
     registration(user:User){
-        return this.http.post<User>(this.baseURL,user);
+        return this.http.post<User>(this.baseURL+"/registration",user);
     }
 
 }

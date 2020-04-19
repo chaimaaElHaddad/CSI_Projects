@@ -7,7 +7,7 @@ import csi.master.gestion_des_formations.entities.ElementDeFormation;
 
 public interface ElementDeFormationServiceI {
 
-	ElementDeFormation create(ElementDeFormation elementDeFormationToCreate);
+	ElementDeFormation create(ElementDeFormation elementDeFormationToCreate, Long formationId);
 
 	ElementDeFormation update(Long id, ElementDeFormation elementDeFormationToUpdate);
 
@@ -18,6 +18,7 @@ public interface ElementDeFormationServiceI {
 	List<ElementDeFormation> getByFormationId(Long formationId);
 
 	List<ElementDeFormation> getAll();
+
 	
 
 }

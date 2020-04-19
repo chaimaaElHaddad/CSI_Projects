@@ -10,4 +10,6 @@ public interface IEvaluationRepository extends JpaRepository<Evaluation, Long> {
 
 	List<Evaluation> findByElementId(Long id);
 
+	List<Evaluation> findByElementIdAndDone(Long id, int done);
+
 }

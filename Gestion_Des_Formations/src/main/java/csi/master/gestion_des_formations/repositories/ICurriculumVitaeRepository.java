@@ -7,5 +7,7 @@ import csi.master.gestion_des_formations.entities.CurriculumVitae;
 public interface ICurriculumVitaeRepository extends JpaRepository<CurriculumVitae, Long> {
 
 	CurriculumVitae findByFormateurId(long id);
+	
+	void deleteByFormateurId(Long id);
 
 }

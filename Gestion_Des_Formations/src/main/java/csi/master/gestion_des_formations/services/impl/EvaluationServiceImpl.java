@@ -1,6 +1,5 @@
 package csi.master.gestion_des_formations.services.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,38 +63,50 @@ public class EvaluationServiceImpl implements EvaluationServiceI {
 
 	@Override
 	public int getEvaluationNote(Evaluation evaluation) {
-		int accueilNote = 0;
-		for (int note : evaluation.getAccueilCriteresNotes().values()) {
-			accueilNote += note;
-		}
-		
-		int formateurNote = 0;
-		for (int note : evaluation.getFormateurCriteresNotes().values()) {
-			formateurNote += note;
-		}
-		
-		int contenuNote = 0;
-		for (int note : evaluation.getContenuCriteresNotes().values()) {
-			contenuNote += note;
-		}
-		
-		//evaluationNote = somme des notes / 100 
-		return  accueilNote + formateurNote + contenuNote;
+//		int accueilNote = 0;
+//		for (int note : evaluation.getAccueilCriteresNotes().values()) {
+//			accueilNote += note;
+//		}
+//
+//		int formateurNote = 0;
+//		for (int note : evaluation.getFormateurCriteresNotes().values()) {
+//			formateurNote += note;
+//		}
+//
+//		int contenuNote = 0;
+//		for (int note : evaluation.getContenuCriteresNotes().values()) {
+//			contenuNote += note;
+//		}
+
+		// evaluationNote = somme des notes / 100
+		return (evaluation.getAccueilNote() + evaluation.getFormateurNote() + evaluation.getContenuNote());
 	}
 
 	@Override
 	public int getScoreByElementId(Long elementId) {
-		List<Evaluation> evaluationList = new ArrayList<Evaluation>();
-		
+		List<Evaluation> evaluationList = getByElementIdAndDone(elementId,1);
+
 		int score = 0;
-		
-		for (Evaluation evaluation : evaluationList) {
-			score += getEvaluationNote(evaluation);
+
+		if(evaluationList.size() != 0) {
+			for (Evaluation evaluation : evaluationList) {
+				score += getEvaluationNote(evaluation);
+			}
+			
+			System.err.println(score);
+			System.err.println(evaluationList);
+
+			score /= evaluationList.size();
 		}
 		
-		score /= evaluationList.size();
-		
+
 		return score; // (/100)
+	}
+
+	@Override
+	public List<Evaluation> getByElementIdAndDone(Long id, int done) {
+		// TODO Auto-generated method stub
+		return evaluationRepository.findByElementIdAndDone(id,done);
 	}
 
 }

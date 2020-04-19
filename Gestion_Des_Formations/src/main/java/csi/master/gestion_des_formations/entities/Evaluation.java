@@ -1,11 +1,6 @@
 package csi.master.gestion_des_formations.entities;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,30 +15,35 @@ public class Evaluation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long elementId;
+
+//	@ElementCollection(fetch = FetchType.LAZY)
+//	private Map<String, Integer> accueilCriteresNotes = new HashMap<String, Integer>(); //<critère,note>  note/10
+//	
+//	@ElementCollection(fetch = FetchType.LAZY)
+//	private Map<String, Integer> formateurCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
+//	
+//	@ElementCollection(fetch = FetchType.LAZY)
+//	private Map<String, Integer> contenuCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
+
+	private int accueilNote;
+	private int formateurNote;
+	private int contenuNote;
 	
-	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> accueilCriteresNotes = new HashMap<String, Integer>(); //<critère,note>  note/10
-	
-	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> formateurCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
-	
-	@ElementCollection(fetch = FetchType.LAZY)
-	private Map<String, Integer> contenuCriteresNotes = new HashMap<String, Integer>(); //<critère,note>
- 
-	
+	private int done;
+
 	public Evaluation() {
-		accueilCriteresNotes.put("propreté", 0);
-		accueilCriteresNotes.put("matériel", 0);
-		accueilCriteresNotes.put("propreté matériel ", 0);
-		
-		formateurCriteresNotes.put("", 0);
-		formateurCriteresNotes.put("", 0);
-		formateurCriteresNotes.put("", 0);
-		
-		contenuCriteresNotes.put("", 0);
-		contenuCriteresNotes.put("", 0);
-		contenuCriteresNotes.put("", 0);
-		contenuCriteresNotes.put("", 0);
+//		accueilCriteresNotes.put("propreté", 0);
+//		accueilCriteresNotes.put("matériel", 0);
+//		accueilCriteresNotes.put("propreté matériel ", 0);
+//		
+//		formateurCriteresNotes.put("", 0);
+//		formateurCriteresNotes.put("", 0);
+//		formateurCriteresNotes.put("", 0);
+//		
+//		contenuCriteresNotes.put("", 0);
+//		contenuCriteresNotes.put("", 0);
+//		contenuCriteresNotes.put("", 0);
+//		contenuCriteresNotes.put("", 0);
 	}
-		
+
 }

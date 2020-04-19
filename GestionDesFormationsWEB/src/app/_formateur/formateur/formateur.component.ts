@@ -55,6 +55,17 @@ export class FormateurComponent implements OnInit {
     dialogConfig.width = "940px";
 
     const modalDialog = this.dialog.open(CreateTrainingComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(formations => {
+      if(formations.length != 0){
+        this.votre_formations = formations;
+        this.dataSource = new MatTableDataSource<Formation>(this.votre_formations);
+        this.formationService.getFormationList().subscribe(formations =>{
+          this.toutes_formations = formations;
+        });
+      }
+      
+    });
   }
 
   updateModal(formationId: number){
@@ -87,7 +98,7 @@ export class FormateurComponent implements OnInit {
     dialogConfig.id = "modal-component";
     dialogConfig.height = "570px";
     dialogConfig.width = "970px";
-    dialogConfig.data= {formation: formation}
+    dialogConfig.data= {formation: formation};
 
     const modalDialog = this.dialog.open(DetailsTrainingComponent, dialogConfig);
   }
@@ -113,12 +124,19 @@ export class FormateurComponent implements OnInit {
     }
   }
 
-}
- 
-const ELEMENT_DATA: Formation[] = [
+  formation_delete(formation : Formation){
+    this.formationService.deleteFormation(formation.id).subscribe(formations=>{
+      this.votre_formations = formations;
+      this.dataSource = new MatTableDataSource<Formation>(this.votre_formations);
+    });
+    
+  }
 
-  //{nom: "JAVA-EE", etablissement: "Université Abdelmalek Essaâdi", date: "28/05/2010" ,prix:'350 MAD'},
-  //{nom: "DOT-NET", etablissement: "Université Abdelmalek Essaâdi", date: "28/08/2010",prix:'200 MAD'},
-  //{nom: "ANGULAR", etablissement: "Université Abdelmalek Essaâdi", date: "28/07/2010",prix:'500 MAD'},
-  
-];
+  applyRecherche(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+}
+

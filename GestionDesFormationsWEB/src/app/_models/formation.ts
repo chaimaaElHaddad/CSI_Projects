@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Element } from './element';
 
 export class Formation {
 
@@ -13,4 +14,5 @@ export class Formation {
     description: string;
 
     formateur: User;
+    elementDeFormations: Element[] = [];
 }

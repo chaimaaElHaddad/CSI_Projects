@@ -7,6 +7,14 @@ import { Formation } from 'src/app/_models/formation';
 import { PlanTrainingComponent } from '../plan-training/plan-training.component';
 import { CvFormateurComponent } from 'src/app/_beneficier/cv-formateur/cv-formateur.component';
 import { EvaluationFormationComponent } from '../evaluation-formation/evaluation-formation.component';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { FormationService } from 'src/app/services/formation.service';
+import { User } from 'src/app/_models/user';
+import { DetailsTrainingComponent } from 'src/app/_formateur/details-training/details-training.component';
+import { Element } from 'src/app/_models/element';
+import { ElementService } from 'src/app/services/element.service';
+import { UserElementInscriptionService } from 'src/app/services/user-element-inscription.service';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 
 @Component({
   selector: 'app-beneficiary',
@@ -14,56 +22,112 @@ import { EvaluationFormationComponent } from '../evaluation-formation/evaluation
   styleUrls: ['./beneficiary.component.css']
 })
 export class BeneficiaryComponent implements OnInit {
-  constructor(public dialog: MatDialog ) {}
+
+  currentUser: User;
+
+  votre_formations_checked = false;
+  toutes_formations_checked = true;
+
+
+  elements : Element[] = [];
+
+  constructor(public dialog: MatDialog, private evalService : EvaluationService, private formationService: FormationService , private elementService: ElementService, private userElementInscriptionService: UserElementInscriptionService) {}
     
-  displayedColumns: string[] = ['nom', 'etablissement', 'date' ,'prix' , 'formateur' , 'action' , 'evaluation' ];
-  dataSource = new MatTableDataSource<Formation>(ELEMENT_DATA);
+  displayedColumns: string[] = ['nom', 'etablissement', 'date' ,'prix' , 'formateur' , 'action' ];
+  dataSource  = new MatTableDataSource<Formation>();
 
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    /*this.formationService.getFormationByFormateur(this.currentUser.id).subscribe(formations =>{
+      this.votre_formations = formations;
+      this.dataSource = new MatTableDataSource<Formation>(this.votre_formations);
+    });*/
+    this.formationService.getFormationList().subscribe(formations =>{
+      this.dataSource  = new MatTableDataSource<Formation>(formations);
+    });
+    
+    this.getElements();
   }
 
-  detailModal(){
+  getElements(){
+    this.userElementInscriptionService.getUserInscriptionByBeneficiare().subscribe(inscriptions=>{
+      inscriptions.forEach(inscription => {
+        this.evalService.getScoreByElement(inscription.element).subscribe(score=>{
+          inscription.element.score = score[0];
+          this.elements.push(inscription.element);
+        });
+        
+      });
+      
+    });
+  }
+
+  detailModal(formation : Formation){
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "600px";
     dialogConfig.width = "900px";
+    dialogConfig.data= {formation: formation};
 
-    const modalDialog = this.dialog.open(PlanTrainingComponent, dialogConfig);
+    const modalDialog = this.dialog.open(DetailsTrainingComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(() => {
+      this.elements = [];
+      this.getElements();
+    });
   }
 
-  cvModal(){
+  cvModal(formateur: User){
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "600px";
     dialogConfig.width = "900px";
+    dialogConfig.data = {formateur: formateur}
 
     const modalDialog = this.dialog.open(CvFormateurComponent, dialogConfig);
   }
 
-  evaluateModal(){
+  evaluateModal(element : Element){
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "600px";
     dialogConfig.width = "900px";
+    dialogConfig.data = {element : element};
 
     const modalDialog = this.dialog.open( EvaluationFormationComponent  , dialogConfig);
+    modalDialog.afterClosed().subscribe(() => {
+      this.elements = [];
+      this.getElements();
+    });
+  }
+
+  votreFormations(event: MatCheckboxChange): void {
+    if(event.checked){
+      this.toutes_formations_checked = false;
+    }else{
+      this.toutes_formations_checked = true;
+    }
+  }
+
+  toutesFormations(event: MatCheckboxChange): void {
+    if(event.checked){
+      this.votre_formations_checked = false;
+    }else{
+      this.votre_formations_checked = true;
+    }
+  }
+
+  applyRecherche(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
- 
-const ELEMENT_DATA: Formation[] = [
 
-  //{nom: "JAVA-EE", etablissement: "Université Abdelmalek Essaâdi", date: "28/05/2010" ,prix:'350 MAD'},
-  //{nom: "DOT-NET", etablissement: "Université Abdelmalek Essaâdi", date: "28/08/2010",prix:'200 MAD'},
-  //{nom: "ANGULAR", etablissement: "Université Abdelmalek Essaâdi", date: "28/07/2010",prix:'500 MAD'},
-  
-];

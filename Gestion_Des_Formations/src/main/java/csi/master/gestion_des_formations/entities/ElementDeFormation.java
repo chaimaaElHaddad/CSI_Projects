@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity
@@ -25,9 +27,11 @@ public class ElementDeFormation {
 	private String objectif;
 	private String prerequis;
 	private String description;
+	private int score;
+	private int nbDePlacesRestantes;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Formation formation;
-
 
 }

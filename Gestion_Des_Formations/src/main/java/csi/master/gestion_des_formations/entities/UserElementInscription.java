@@ -2,6 +2,7 @@ package csi.master.gestion_des_formations.entities;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,8 +16,8 @@ import lombok.Data;
 
 @Entity
 @Data
-public class UserElementInscription{
-	
+public class UserElementInscription {
+
 	@EmbeddedId
 	private UserElementInscriptionId id;
 
@@ -29,15 +30,15 @@ public class UserElementInscription{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("elementId")
 	private ElementDeFormation element;
-	
+
 	@Email
 	private String email;
 	private String phone;
 	private String localisation;
-	
-	@OneToOne(fetch = FetchType.EAGER)
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Evaluation evaluation;
-	
+
 	private Calendar dateInscription = Calendar.getInstance();
-	
+
 }

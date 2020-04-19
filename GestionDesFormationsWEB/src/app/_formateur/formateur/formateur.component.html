@@ -2,16 +2,20 @@
 <div class="formation" >
  
 <div class="container"> 
-<h2> Formation </h2>
+<h2> Formations </h2>
     <div class="row">
         <div class="col-sm-6 col-xl" id="subtitle">
           <section class="checkbox-section">
             <mat-checkbox class="checkbox-margin"  [(ngModel)]="votre_formations_checked" (change)="votreFormations($event)">Votres Formations</mat-checkbox>
             <mat-checkbox class="checkbox-margin" [(ngModel)]="toutes_formations_checked" (change)="toutesFormations($event)" >Toutes les Formations</mat-checkbox>
           </section>
+          <mat-form-field>
+            <mat-label>Rechercher</mat-label>
+            <input matInput (keyup)="applyRecherche($event)">
+          </mat-form-field>
             <!--<p> Votre Formation </p>-->
         </div>
-        <div class="col-sm-6 col-xl">
+        <div class="col-sm-6 col-xl" *ngIf="votre_formations_checked">
           <a class="button-create float-right" matTooltip="Créer une nouvelle formation" type="button"  (click)="createnModal()" ><mat-icon  class="button-create-icon" aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon></a>
         </div>
       </div>
@@ -23,7 +27,7 @@
             <!-- Nom Column -->
             <ng-container matColumnDef="nom" class="culumn">
               <th mat-header-cell *matHeaderCellDef class="title-column"> Nom </th>
-              <td mat-cell *matCellDef="let formation" class="table-column"> {{formation.nom}} </td>
+              <td mat-cell *matCellDef="let formation" class="table-column"> {{formation.nom}}</td>
             </ng-container>
   
             <!-- Etablissement Column -->
@@ -48,13 +52,13 @@
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef  class="title-column"> Action </th>
               <td mat-cell *matCellDef="let formation" class="table-column"> 
-                  <a type="button" (click)="updateModal(formation.id)" >
-                      <mat-icon matTooltip="Edit" aria-hidden="false" aria-label="edit icon" style="color: #00695c;">edit</mat-icon>
+                  <a type="button" (click)="updateModal(formation.id)" *ngIf="votre_formations_checked">
+                      <mat-icon matTooltip="Edit" aria-hidden="false" aria-label="edit icon" style="color: #3a5199;">edit</mat-icon>
                   </a>
                   <a type="button"  (click)="detailModal(formation)">
                       <mat-icon  matTooltip="Details" aria-hidden="false" aria-label="edit icon" style="color: #666666; margin-left: 15px;">chrome_reader_mode</mat-icon>
                   </a>
-                  <a type="button"  >
+                  <a type="button"  (click)="formation_delete(formation)" *ngIf="votre_formations_checked">
                       <mat-icon   matTooltip="Delete" aria-hidden="false" aria-label="edit icon" style="color: #B71C1C; margin-left: 15px;">delete</mat-icon>
                   </a>
               </td>

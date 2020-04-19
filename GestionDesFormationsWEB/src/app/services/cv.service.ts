@@ -4,11 +4,13 @@ import { User } from '../_models/user';
 import { Observable } from 'rxjs';
 import { Formation } from '../_models/formation';
 import { Element } from '../_models/element';
+import { UserElementInscription } from '../_models/userElementInscription';
+import { CV } from '../_models/cv';
 
  
 
 @Injectable({ providedIn: 'root' })
-export class ElementService {
+export class CVService {
   
   currentUser : User;
     
@@ -16,40 +18,35 @@ export class ElementService {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
      }
 
-    baseURL = "http://localhost:8080/elementDeFormation";
+    baseURL = "http://localhost:8080/cv";
 
 
 
-    getElementByFormation(formationId: number): Observable<Element[]>{
+    getCVByFormateurId(formateur: User): Observable<CV>{
+
+      console.log(formateur);
+
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
     
-        return this.http.get<Element[]>(this.baseURL+'/formation/'+formationId,{headers});
+        return this.http.get<CV>(this.baseURL+'/formateur/'+formateur.id,{headers});
     }
-    
-    createElement(element : Element, formationId: number): Observable<any>{
+
+    updateCV(cv : CV): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
-      return this.http.post(this.baseURL+'/create/'+formationId,element,{headers});
+      return this.http.put(this.baseURL+'/update/'+cv.id_CV,cv,{headers});
     }
 
-    updateElement(element : Element): Observable<any>{
+    createCV(cv : CV): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
-      return this.http.put(this.baseURL+'/update/'+element.id,element,{headers});
-    }
-
-    deleteElement(id : number): Observable<any>{
-      const headers = new HttpHeaders({
-        Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
-      });
-
-      return this.http.delete(this.baseURL+'/delete/'+id,{headers});
+      return this.http.put(this.baseURL+'/create',cv,{headers});
     }
 
 }

@@ -9,4 +9,19 @@
     text-align: center;
     color: #3a5199;
     font-family: 'Times New Roman', Times;
-  }  
+  }
+  
+  h2{
+    color: #3a5199;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  .button-create-icon {
+    width: 200px;
+    height: 100%;
+    color: #3a5199;
+    font-size: 40px;
+    margin-right: -130px;
+  }

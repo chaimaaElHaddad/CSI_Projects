@@ -3,6 +3,8 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.services';
+import { CV } from '../_models/cv';
+import { CVService } from '../services/cv.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   inscrire= false;
   erreur= false;
 
-  constructor(private fb: FormBuilder,private router:Router,private userService:UserService) { }
+  constructor(private fb: FormBuilder,private router:Router,private userService:UserService, private cvService: CVService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -37,7 +39,12 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    this.userService.registration(this.registerForm.value).subscribe(data => {
+    this.userService.registration(this.registerForm.value).subscribe(user => {
+      if(user.role == "FORMATEUR"){
+        var cv = new CV();
+        cv.formateurId = user.id;
+        this.cvService.createCV(cv);
+      }
         this.inscrire = true;
       }, err => {
         console.log(err);

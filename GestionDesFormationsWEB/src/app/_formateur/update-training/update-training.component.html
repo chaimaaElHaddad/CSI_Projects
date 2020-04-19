@@ -92,6 +92,151 @@
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-secondary" style="margin-right: 5px; width: 100px ;"  mat-dialog-close>Annuler</button>
                         <button mat-button matStepperPrevious class="btn btn-secondary" style="margin-right: 5px; width: 100px" >Arrière</button>
+                        <button mat-button matStepperNext class="btn btn-success"  style="background-color: #3a5199; border: #3a5199; width: 100px;">Prochain</button>   
+                    </div>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="planFormGroup"> 
+            <form [formGroup]="planFormGroup">
+                <ng-template matStepLabel>Plan </ng-template>
+                
+                <div class="container" style="margin-top: 30px;" >
+                    <div class="row">
+                        <div class="col-sm-5"> 
+                            <h2 >Plan</h2>
+                        </div>
+                    </div>
+                    
+              <!-- Elements de plan  -->
+              
+              
+              <mat-accordion>
+                <mat-expansion-panel *ngFor="let element of elements">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{element.nom}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Score : {{element.score}} /100
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                  <div class="form-group row"> 
+                    <div class="col-sm-6">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Date : </label>
+                      {{element.date | date}}
+                    </div>     
+                    <div class="col-sm-6">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Temps :</label>
+                      {{element.temps}} min
+                    </div>
+                  </div>
+              
+                  <div class="form-group row"> 
+                    <div class="col-sm-6">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prix : </label>
+                      {{element.prix}} MAD
+                    </div>     
+                    <div class="col-sm-6">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Nombre de places restantes :</label>
+                      {{element.nbDePlacesRestantes}}
+                    </div>
+                  </div>
+              
+                  <div class="form-group row"> 
+                    <div class="col-sm-12">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Objectif : </label>
+                      {{element.objectif}}
+                    </div>
+                  </div>
+              
+                  <div class="form-group row"> 
+                    <div class="col-sm-12">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Prérequis : </label>
+                      {{element.prerequis}}
+                    </div>
+                  </div>
+              
+                  <div class="form-group row"> 
+                    <div class="col-sm-12">
+                      <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attribbuts">Description : </label>
+                      {{element.description}}
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <!--<button class="btn btn-secondary" style="margin-right: 5px; width: 100px ;"  mat-dialog-close>Modifier</button>-->
+                    <button mat-button  class="btn btn-success"  style="background-color: #3a5199; border: #3a5199; width: 100px;" (click)="element_delete(element)">Supprimer</button>   
+                </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+              
+              <!-- Ajouter un element  -->
+
+                <div class="row" style="margin-top: 30px;">                    
+                    <div class="col-sm-12 col-xl">
+                      <a class="button-create float-right" type="button" value="button"  (click)="add_button_clicked=true"><mat-icon  class="button-create-icon" aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon></a>
+                    </div>
+                </div>
+            <div *ngIf="add_button_clicked">
+              <div>
+                <mat-form-field style="width: 100%;">
+                    <mat-label >Nom</mat-label>
+                    <input matInput formControlName="nom" required>
+                </mat-form-field>
+            </div>
+            <div > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Prix</mat-label>
+                    <input matInput type="number" formControlName="prix" required>
+                    <span matSuffix>MAD</span>
+                </mat-form-field>
+            </div>
+            <div > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Date</mat-label>
+                    <input matInput type="date" formControlName="date" required>
+                </mat-form-field>
+            </div>
+            <div  > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Temps</mat-label>
+                    <input matInput type="number" formControlName="temps" required>
+                    <span matSuffix>min</span>
+                </mat-form-field>
+            </div>
+            <div  > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Objectif</mat-label>
+                    <textarea matInput formControlName="objectif" required></textarea>
+                </mat-form-field>
+            </div>
+            <div  > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Prérequis</mat-label>
+                    <textarea matInput formControlName="prerequis"></textarea>
+                </mat-form-field>
+            </div>
+            <div  > 
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-center" style="margin: 30px;">
+                <button mat-button class="btn btn-secondary"  style="margin-right: 5px; width: 100px ;" (click)="annuler_element_add()">Annuler</button>
+                <button mat-button class="btn btn-success"  style="background-color: #3a5199; border: #3a5199; width: 100px;" (click)="element_add()">Ajouter</button>
+            </div>
+        </div>
+              
+                  </div>
+                
+                <div>
+
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-secondary" style="margin-right: 5px; width: 100px ;"  mat-dialog-close>Annuler</button>
+                        <button mat-button matStepperPrevious class="btn btn-secondary" style="margin-right: 5px; width: 100px" >Arrière</button>
                         <button mat-button (click)="update()"  class="btn btn-success"  style="background-color: #3a5199; border: #3a5199; width: 100px;">Modifier</button>   
                     </div>
                 </div>

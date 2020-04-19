@@ -20,7 +20,6 @@ import {MatTableModule} from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { CreateCvComponent } from './_cv/create-cv/create-cv.component';
 import { UpdateCvComponent } from './_cv/update-cv/update-cv.component';
 import { FormateurComponent } from './_formateur/formateur/formateur.component';
 import { CreateTrainingComponent } from './_formateur/create-training/create-training.component';
@@ -37,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CvFormateurComponent } from './_beneficier/cv-formateur/cv-formateur.component';
 import { EvaluationFormationComponent } from './_beneficier/evaluation-formation/evaluation-formation.component';
 import { SocialLoginModule,GoogleLoginProvider, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -66,7 +66,6 @@ export function provideConfig() {
     LoginComponent,
     RegistrationComponent,
     BeneficiaryComponent,
-    CreateCvComponent,
     UpdateCvComponent,
     FormateurComponent,
     CreateTrainingComponent,
@@ -99,8 +98,26 @@ export function provideConfig() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatExpansionModule
    
+  ],
+  exports: [
+    MatTabsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
+    MatIconModule ,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatExpansionModule
   ],
   providers: [
     {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},

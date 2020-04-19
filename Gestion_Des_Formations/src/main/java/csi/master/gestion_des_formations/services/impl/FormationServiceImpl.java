@@ -7,8 +7,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import csi.master.gestion_des_formations.entities.ElementDeFormation;
 import csi.master.gestion_des_formations.entities.Formation;
+import csi.master.gestion_des_formations.entities.UserElementInscription;
+import csi.master.gestion_des_formations.repositories.IElementRepository;
 import csi.master.gestion_des_formations.repositories.IFormationRepository;
+import csi.master.gestion_des_formations.repositories.IUserElementInscriptionRepository;
 import csi.master.gestion_des_formations.services.FormationServiceI;
 
 @Service
@@ -16,6 +20,12 @@ public class FormationServiceImpl implements FormationServiceI {
 
 	@Autowired
 	private IFormationRepository formationRepository;
+	
+	@Autowired
+	private IElementRepository elementRepository;
+	
+	@Autowired
+	private IUserElementInscriptionRepository userInscriptionRepository;
 
 	@Override
 	public Formation create(Formation formationToCreate) {
@@ -38,6 +48,14 @@ public class FormationServiceImpl implements FormationServiceI {
 
 	@Override
 	public void delete(Long id) {
+		List<ElementDeFormation> elementDeFormations = elementRepository.findByFormationId(id);
+		for (ElementDeFormation elementDeFormation : elementDeFormations) {
+			List<UserElementInscription> userElementInscriptions = userInscriptionRepository.findByElement(elementDeFormation);
+			for (UserElementInscription userElementInscription : userElementInscriptions) {
+				userInscriptionRepository.delete(userElementInscription);
+			}
+			elementRepository.delete(elementDeFormation);
+		}
 		formationRepository.deleteById(id);
 	}
 

@@ -9,15 +9,29 @@ import org.springframework.stereotype.Service;
 import csi.master.gestion_des_formations.entities.ElementDeFormation;
 import csi.master.gestion_des_formations.repositories.IElementRepository;
 import csi.master.gestion_des_formations.services.ElementDeFormationServiceI;
+import csi.master.gestion_des_formations.services.EvaluationServiceI;
+import csi.master.gestion_des_formations.services.FormationServiceI;
+import csi.master.gestion_des_formations.services.UserElementInscriptionServiceI;
 
 @Service
 public class ElementDeFormationServiceImpl implements ElementDeFormationServiceI {
 
 	@Autowired
 	private IElementRepository elementRepository;
+	
+	@Autowired
+	private UserElementInscriptionServiceI inscriptionService;
+	
+	@Autowired
+	private EvaluationServiceI evaluationService;
+	
+	@Autowired
+	private FormationServiceI formationService;
+
 
 	@Override
-	public ElementDeFormation create(ElementDeFormation elementDeFormationToCreate) {
+	public ElementDeFormation create(ElementDeFormation elementDeFormationToCreate, Long formationId) {
+		elementDeFormationToCreate.setFormation(formationService.getById(formationId));
 		return elementRepository.save(elementDeFormationToCreate);
 	}
 
@@ -27,7 +41,6 @@ public class ElementDeFormationServiceImpl implements ElementDeFormationServiceI
 			Optional<ElementDeFormation> element = elementRepository.findById(id);
 			if (element.isPresent()) {
 				elementDeFormationToUpdate.setId(id);
-				;
 				return elementRepository.save(elementDeFormationToUpdate);
 			}
 
@@ -42,23 +55,39 @@ public class ElementDeFormationServiceImpl implements ElementDeFormationServiceI
 
 	@Override
 	public ElementDeFormation getById(Long id) {
+		ElementDeFormation elementDeFormation = null;
 		Optional<ElementDeFormation> elementOptional = elementRepository.findById(id);
 
 		if (elementOptional.isPresent()) {
-			return elementOptional.get();
+			elementDeFormation = elementOptional.get();
+			int nbInscription = inscriptionService.getByElement(elementDeFormation).size();
+			elementDeFormation.setNbDePlacesRestantes(elementDeFormation.getFormation().getNombres_places() - nbInscription);
+			elementDeFormation.setScore(evaluationService.getScoreByElementId(elementDeFormation.getId()));
 		}
 
-		return null;
+		return elementDeFormation;
 	}
 
 	@Override
 	public List<ElementDeFormation> getAll() {
-		return elementRepository.findAll();
+		List<ElementDeFormation> elementDeFormations = elementRepository.findAll();
+		for (ElementDeFormation elementDeFormation : elementDeFormations) {
+			int nbInscription = inscriptionService.getByElement(elementDeFormation).size();
+			elementDeFormation.setNbDePlacesRestantes(elementDeFormation.getFormation().getNombres_places() - nbInscription);
+			elementDeFormation.setScore(evaluationService.getScoreByElementId(elementDeFormation.getId()));
+		}
+		return elementDeFormations;
 	}
 
 	@Override
 	public List<ElementDeFormation> getByFormationId(Long formationId) {
-		return elementRepository.findByFormationId(formationId);
+		List<ElementDeFormation> elementDeFormations = elementRepository.findByFormationId(formationId);
+		for (ElementDeFormation elementDeFormation : elementDeFormations) {
+			int nbInscription = inscriptionService.getByElement(elementDeFormation).size();
+			elementDeFormation.setNbDePlacesRestantes(elementDeFormation.getFormation().getNombres_places() - nbInscription);
+			elementDeFormation.setScore(evaluationService.getScoreByElementId(elementDeFormation.getId()));
+		}
+		return elementDeFormations;
 	}
 
 }

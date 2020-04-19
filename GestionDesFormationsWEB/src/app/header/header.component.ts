@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  showCV : boolean;
+  currentUser : User;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if(this.currentUser.role == "FORMATEUR"){
+      this.showCV = true;
+    }else if(this.currentUser.role == "BENEFICIAIRE"){
+      this.showCV = false;
+    }
   }
 
 }

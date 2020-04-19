@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import csi.master.gestion_des_formations.entities.User;
+import csi.master.gestion_des_formations.repositories.ICurriculumVitaeRepository;
 import csi.master.gestion_des_formations.repositories.IUserRepository;
 import csi.master.gestion_des_formations.services.UserServiceI;
 
@@ -14,6 +15,9 @@ import csi.master.gestion_des_formations.services.UserServiceI;
 public class UserServiceImpl implements UserServiceI {
 	@Autowired
 	private IUserRepository userRepository;
+	
+	@Autowired
+	private ICurriculumVitaeRepository cvRepository;
 	
 
 	@Override
@@ -42,6 +46,7 @@ public class UserServiceImpl implements UserServiceI {
 
 	@Override
 	public void delete(Long id) {
+		cvRepository.deleteByFormateurId(id);
 		userRepository.deleteById(id);
 	}
 

@@ -11,70 +11,73 @@
     <div>
         <div class="item">
             <h1>Informations Personnelles</h1>
-            <h3>Nom Complet :</h3>
-            <h3>Métier :</h3>
-            <h3>Phone :</h3>
-            <h3>Email :</h3>      
+            <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Nom Complet : </label> {{currentUser.prenom}} {{currentUser.nom}}<br/>
+            <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Métier :</label> {{cv.metier}}<br/>
+            <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Phone :</label> {{currentUser.phone}}<br/>
+            <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Email :</label> {{currentUser.email}} <br/>    
         </div>
 
         <div class="item">
-            <h1 >Formation</h1>
+            <h1 >Formations</h1>
+            <div *ngFor="let formation of formations">
             <div class="row">
                 <div class="col-md-2" id="subtitle"> 
-                    <!-- entrer les attributs -->
-                    <h4 class="attributs">25/08/2010 - 25/08/2011</h4>  
+                    <h4 class="attributs">{{formation.dateDebut}} / {{formation.dateFin}}</h4>  
                 </div>
                 <div class="col-md-9" >
-                    <!-- entrer les attributs -->
-                    <h4 class="attributs">Description</h4>
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Description : </label>
+                    {{formation.description}}
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-2" id="subtitle"></div>
                 <div class="col-md-9">
-                    <!-- entrer les attributs -->
-                    <h4 class="attributs">Etabelessement</h4> 
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Etablessement : </label>
+                    {{formation.etablessement}}
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-2" id="subtitle"> </div>
                 <div class="col-md-9">
-                    <!-- entrer les attributs -->
-                    <h4 class="attributs">Ville</h4> 
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Ville : </label>
+                    {{formation.ville}}
                 </div>
-            </div>      
+            </div>
+        </div>     
         </div>
 
         <div class="item">
-            <h1>Experience</h1>
+            <h1>Experiences</h1>
+
+            <div *ngFor="let experience of experiences">
             <div class="row">
-                <div class="col-md-2" id="subtitle"> 
-                     <!-- entrer les attributs -->
-                     <h4 class="attributs">25/08/2010 - 25/08/2011</h4>   
+                <div class="col-md-2" id="subtitle">
+                     <h4 class="attributs">{{experience.dateDebut}} / {{experience.dateFin}}</h4>   
                 </div>
                 <div class="col-md-9">
-                     <!-- entrer les attributs -->
-                     <h4 class="attributs">Description</h4>  
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Description : </label>
+                    {{experience.description}}
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-2" id="subtitle"> </div>
                 <div class="col-md-9">
-                     <!-- entrer les attributs -->
-                     <h4 class="attributs">Entreprise</h4>
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Entreprise : </label>
+                    {{experience.entreprise}}
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-2" id="subtitle"> </div>
                 <div class="col-md-9">
-                    <!-- entrer les attributs -->
-                    <h4 class="attributs">Ville</h4>
+                    <label style="color: #999;" class="col-lg-5 col-form-label form-control-label" id="attributs">Ville : </label>
+                    {{experience.ville}}
                 </div>
-            </div>     
+            </div> 
+        </div>    
         </div>      
     </div>   
 </div>

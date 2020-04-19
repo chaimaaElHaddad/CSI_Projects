@@ -32,12 +32,13 @@ public class UserElementInscriptionServiceImpl implements UserElementInscription
 		mail.setMailFrom("chaimaahaddad7@gmail.com");
 		mail.setMailTo(userElementInscriptionToCreate.getEmail());
 		mail.setMailSubject("Gestion des formations - Email pour réactiver l'inscription");
-		mail.setMailContent("Bonjour "+userElementInscriptionToCreate.getBeneficiaire().getUsername()+",\n\nTu dois réactiver ton inscription chaque semaine, sinon ta demande sera supprimée dans l'élément '"+userElementInscriptionToCreate.getElement().getNom()+"' de la formation '"+userElementInscriptionToCreate.getElement().getFormation().getNom()+"'.\n\nCordialement\nCSI_Group.");
+		mail.setMailContent("Bonjour " + userElementInscriptionToCreate.getBeneficiaire().getUsername()
+				+ ",\n\nTu dois réactiver ton inscription chaque semaine, sinon ta demande sera supprimée dans l'élément '"
+				+ userElementInscriptionToCreate.getElement().getNom() + "'.\n\nCordialement\nCSI_Group.");
+		System.err.println(mail);
 		mailService.sendEmail(mail);
-		
 		return userElementInscriptionRepository.save(userElementInscriptionToCreate);
-		
-		
+
 	}
 
 	@Override

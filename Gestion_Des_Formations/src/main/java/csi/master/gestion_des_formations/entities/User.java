@@ -1,7 +1,5 @@
 package csi.master.gestion_des_formations.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,12 +12,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class User implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3846474220046952524L;
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

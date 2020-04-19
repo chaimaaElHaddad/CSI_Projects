@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         if(data.role == "FORMATEUR"){
           this.router.navigate(['/formateur']);
         }else if(data.role == "BENEFICIAIRE"){
-        this.router.navigate(['/formateur']);
+        this.router.navigate(['/beneficiaire']);
         }
       },
 

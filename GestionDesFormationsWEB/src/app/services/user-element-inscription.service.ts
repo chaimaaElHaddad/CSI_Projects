@@ -4,11 +4,12 @@ import { User } from '../_models/user';
 import { Observable } from 'rxjs';
 import { Formation } from '../_models/formation';
 import { Element } from '../_models/element';
+import { UserElementInscription } from '../_models/userElementInscription';
 
  
 
 @Injectable({ providedIn: 'root' })
-export class ElementService {
+export class UserElementInscriptionService {
   
   currentUser : User;
     
@@ -16,40 +17,49 @@ export class ElementService {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
      }
 
-    baseURL = "http://localhost:8080/elementDeFormation";
+    baseURL = "http://localhost:8080/userElementInscription";
 
 
 
-    getElementByFormation(formationId: number): Observable<Element[]>{
+    getUserInscriptionByElement(element: Element): Observable<UserElementInscription[]>{
+      console .log(element);
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
     
-        return this.http.get<Element[]>(this.baseURL+'/formation/'+formationId,{headers});
+        return this.http.get<UserElementInscription[]>(this.baseURL+'/element/'+element.id,{headers});
+    }
+
+    getUserInscriptionByBeneficiare(): Observable<UserElementInscription[]>{
+      const headers = new HttpHeaders({
+        Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
+      });
+    
+        return this.http.get<UserElementInscription[]>(this.baseURL+'/beneficiaire/'+this.currentUser.id,{headers});
     }
     
-    createElement(element : Element, formationId: number): Observable<any>{
+    createUserInscription(userInscription : UserElementInscription): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
-      return this.http.post(this.baseURL+'/create/'+formationId,element,{headers});
+      return this.http.post(this.baseURL+'/create',userInscription,{headers});
     }
 
-    updateElement(element : Element): Observable<any>{
+    /*updateElement(element : Element): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
       return this.http.put(this.baseURL+'/update/'+element.id,element,{headers});
-    }
+    }*/
 
-    deleteElement(id : number): Observable<any>{
+    deleteUserInscription(userInscription : UserElementInscription): Observable<any>{
       const headers = new HttpHeaders({
         Authorization: 'Basic '+btoa(this.currentUser.username+':'+this.currentUser.password)
       });
 
-      return this.http.delete(this.baseURL+'/delete/'+id,{headers});
+      return this.http.delete(this.baseURL+'/delete/'+userInscription.id,{headers});
     }
 
 }
